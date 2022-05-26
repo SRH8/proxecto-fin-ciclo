@@ -10,12 +10,17 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
+/**
+ * Pantalla principal de la aplicación
+ * 
+ * @author Sergio Fraga
+ */
 public class MainWindow {
 
 	private JFrame frmProyectoFinDe;
 
 	/**
-	 * Launch the application.
+	 * Lanza la aplicación
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -31,14 +36,14 @@ public class MainWindow {
 	}
 
 	/**
-	 * Create the application.
+	 * Crea la aplicación
 	 */
 	public MainWindow() {
 		initialize();
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Inicializa los contenidos de la pantalla
 	 */
 	private void initialize() {
 		frmProyectoFinDe = new JFrame();

@@ -8,17 +8,17 @@ package model.entities;
 public class ComicCollection {
 	
 	/**
-	 * identificador de la colección
+	 * Identificador de la colección
 	 */
 	private int id;
 	
 	/**
-	 * nombre del a colección
+	 * Nombre del a colección
 	 */
 	private String name;
 	
 	/**
-	 * descripción de la colección
+	 * Descripción de la colección
 	 */
 	private String description;
 	

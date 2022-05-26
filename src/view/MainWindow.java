@@ -111,8 +111,14 @@ public class MainWindow {
 		JMenu configMenu = new JMenu("Configuraci\u00F3n");
 		menuBar.add(configMenu);
 		
-		JMenuItem mntmLanguage = new JMenuItem("Idioma");
-		configMenu.add(mntmLanguage);
+		JMenu mnLanguage = new JMenu("Idioma");
+		configMenu.add(mnLanguage);
+		
+		JMenuItem mntmSpanish = new JMenuItem("Espa\u00F1ol");
+		mnLanguage.add(mntmSpanish);
+		
+		JMenuItem mntmGalician = new JMenuItem("Gallego");
+		mnLanguage.add(mntmGalician);
 		
 		JMenu helpMenu = new JMenu("Ayuda");
 		menuBar.add(helpMenu);

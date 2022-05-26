@@ -16,6 +16,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.JLabel;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Dimension;
 
 /**
  * Pantalla principal de la aplicación
@@ -54,6 +58,7 @@ public class MainWindow {
 	 */
 	private void initialize() {
 		frmProyectoFinDe = new JFrame();
+		frmProyectoFinDe.setMinimumSize(new Dimension(800, 400));
 		frmProyectoFinDe.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -62,7 +67,7 @@ public class MainWindow {
 			}
 		});
 		frmProyectoFinDe.setTitle("Proyecto fin de ciclo");
-		frmProyectoFinDe.setBounds(100, 100, 450, 300);
+		frmProyectoFinDe.setBounds(100, 100, 664, 424);
 		frmProyectoFinDe.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		
 		JPanel windowPanel = new JPanel();
@@ -72,8 +77,21 @@ public class MainWindow {
 		JPanel bottomPanel = new JPanel();
 		windowPanel.add(bottomPanel, BorderLayout.SOUTH);
 		
-		JButton btnConnect = new JButton("Conectar");
-		bottomPanel.add(btnConnect);
+		JButton btnContinue = new JButton("Continue");
+		bottomPanel.add(btnContinue);
+		
+		JPanel centralPanel = new JPanel();
+		FlowLayout fl_centralPanel = (FlowLayout) centralPanel.getLayout();
+		fl_centralPanel.setVgap(100);
+		windowPanel.add(centralPanel, BorderLayout.CENTER);
+		
+		JLabel lblWelcomeMessage = new JLabel("\u00A1Bienvenido a la librer\u00EDa!");
+		lblWelcomeMessage.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		centralPanel.add(lblWelcomeMessage);
+		
+		JLabel lblContinueMessage = new JLabel("Para ver el cat\u00E1logo de c\u00F3mics pulsa en continuar");
+		lblContinueMessage.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		centralPanel.add(lblContinueMessage);
 		
 		JMenuBar menuBar = new JMenuBar();
 		frmProyectoFinDe.setJMenuBar(menuBar);

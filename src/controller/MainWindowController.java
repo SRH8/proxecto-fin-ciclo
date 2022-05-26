@@ -18,7 +18,6 @@ public class MainWindowController {
 			if(n == JOptionPane.YES_OPTION) {
 			System.exit(0);
 		}
-		
 	}
 	
 }

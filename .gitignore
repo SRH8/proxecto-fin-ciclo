@@ -34,3 +34,6 @@ bin/
 
 #Database
 src/preferences/db.properties
+
+#Libraries
+lib/

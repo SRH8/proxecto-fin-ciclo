@@ -1,23 +1,27 @@
 package view;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 import controller.MainWindowController;
-
 import java.awt.BorderLayout;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
+import javax.help.HelpSetException;
 import javax.swing.JButton;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ResourceBundle;
-
 import javax.swing.JLabel;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -147,6 +151,8 @@ public class MainWindow {
 		
 		mntmShowHelp = new JMenuItem("Ver ayuda");
 		helpMenu.add(mntmShowHelp);
+		
+		showHelp(language);
 	}
 
 	/**
@@ -165,7 +171,23 @@ public class MainWindow {
 		mntmShowHelp.setText(rb.getString("mntmShowHelp"));
 		lblWelcomeMessage.setText(rb.getString("lblWelcomeMessage"));
 		lblContinueMessage.setText(rb.getString("lblContinueMessage"));
-		
 	}
 	
+	/**
+	 * Muestra la ayuda de la aplicación
+	 */
+	private void showHelp(String language) {
+		ResourceBundle rb = ResourceBundle.getBundle(language);
+		try {
+			File fichero = new File("./src/help/help.hs");
+			URL hsUrl = fichero.toURI().toURL();
+			HelpSet helpset = new HelpSet(null,hsUrl);
+			HelpBroker hb = helpset.createHelpBroker();
+			
+			hb.enableHelpOnButton(mntmShowHelp, "manual", helpset);
+		} catch (HelpSetException | MalformedURLException e) {
+			JOptionPane.showMessageDialog(null, rb.getString("showHelpErrorMessage"),rb.getString("helpMenu"), JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		}
+	}
 }

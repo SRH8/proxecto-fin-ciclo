@@ -16,6 +16,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ResourceBundle;
+
 import javax.swing.JLabel;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -29,6 +31,14 @@ import java.awt.Dimension;
 public class MainWindow {
 
 	private JFrame frmProyectoFinDe;
+	public static String language = "preferences.lang_es_ES";
+	private JMenuItem mntmExit;
+	private JMenuItem mntmGalician;
+	private JMenu helpMenu;
+	private JMenuItem mntmShowHelp;
+	private JLabel lblWelcomeMessage;
+	private JLabel lblContinueMessage;
+	private JMenu fileMenu;
 
 	/**
 	 * Lanza la aplicación
@@ -63,7 +73,7 @@ public class MainWindow {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				MainWindowController mainWindowController = new MainWindowController();
-				mainWindowController.exitApp();
+				mainWindowController.exitApp(language);
 			}
 		});
 		frmProyectoFinDe.setTitle("Proyecto fin de ciclo");
@@ -77,7 +87,7 @@ public class MainWindow {
 		JPanel bottomPanel = new JPanel();
 		windowPanel.add(bottomPanel, BorderLayout.SOUTH);
 		
-		JButton btnContinue = new JButton("Continue");
+		JButton btnContinue = new JButton("Continuar");
 		bottomPanel.add(btnContinue);
 		
 		JPanel centralPanel = new JPanel();
@@ -85,25 +95,25 @@ public class MainWindow {
 		fl_centralPanel.setVgap(100);
 		windowPanel.add(centralPanel, BorderLayout.CENTER);
 		
-		JLabel lblWelcomeMessage = new JLabel("\u00A1Bienvenido a la librer\u00EDa!");
+		lblWelcomeMessage = new JLabel("\u00A1Bienvenido a la librer\u00EDa!");
 		lblWelcomeMessage.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		centralPanel.add(lblWelcomeMessage);
 		
-		JLabel lblContinueMessage = new JLabel("Para ver el cat\u00E1logo de c\u00F3mics pulsa en continuar");
+		lblContinueMessage = new JLabel("Para ver el cat\u00E1logo de c\u00F3mics pulsa en continuar");
 		lblContinueMessage.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		centralPanel.add(lblContinueMessage);
 		
 		JMenuBar menuBar = new JMenuBar();
 		frmProyectoFinDe.setJMenuBar(menuBar);
 		
-		JMenu fileMenu = new JMenu("Archivo");
+		fileMenu = new JMenu("Archivo");
 		menuBar.add(fileMenu);
 		
-		JMenuItem mntmExit = new JMenuItem("Salir");
+		mntmExit = new JMenuItem("Salir");
 		mntmExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainWindowController mainWindowController = new MainWindowController();
-				mainWindowController.exitApp();
+				mainWindowController.exitApp(language);
 			}
 		});
 		fileMenu.add(mntmExit);
@@ -115,16 +125,47 @@ public class MainWindow {
 		configMenu.add(mnLanguage);
 		
 		JMenuItem mntmSpanish = new JMenuItem("Espa\u00F1ol");
+		mntmSpanish.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				language = "preferences.lang_es_ES";
+				translate(language);
+			}
+		});
 		mnLanguage.add(mntmSpanish);
 		
-		JMenuItem mntmGalician = new JMenuItem("Gallego");
+		mntmGalician = new JMenuItem("Gallego");
+		mntmGalician.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				language = "preferences.lang_gl_ES";
+				translate(language);
+			}
+		});
 		mnLanguage.add(mntmGalician);
 		
-		JMenu helpMenu = new JMenu("Ayuda");
+		helpMenu = new JMenu("Ayuda");
 		menuBar.add(helpMenu);
 		
-		JMenuItem mntmShowHelp = new JMenuItem("Ver ayuda");
+		mntmShowHelp = new JMenuItem("Ver ayuda");
 		helpMenu.add(mntmShowHelp);
 	}
 
+	/**
+	 * Traduce la pantalla al idioma especificado
+	 * 
+	 * @param Idioma al que va a ser traducida la pantalla
+	 */
+	private void translate(String language) {
+		ResourceBundle rb = ResourceBundle.getBundle(language);
+		frmProyectoFinDe.setTitle(rb.getString("mainWindowTitle"));
+		mntmExit.setText(rb.getString("mntmExit"));
+		fileMenu.setText(rb.getString("fileMenu"));
+		helpMenu.setText(rb.getString("helpMenu"));
+		mntmExit.setText(rb.getString("mntmExit"));
+		mntmGalician.setText(rb.getString("mntmGalician"));
+		mntmShowHelp.setText(rb.getString("mntmShowHelp"));
+		lblWelcomeMessage.setText(rb.getString("lblWelcomeMessage"));
+		lblContinueMessage.setText(rb.getString("lblContinueMessage"));
+		
+	}
+	
 }

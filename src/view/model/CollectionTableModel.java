@@ -1,22 +1,28 @@
-package model.tables;
+package view.model;
 
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
-import model.entities.Comic;
+import model.entities.ComicCollection;
 
 /**
- * Modelo de la tabla de cómics
+ * Modelo de la tabla de colecciones
  * 
  * @author Sergio Fraga
  */
-public class ComicTableModel extends AbstractTableModel{
+public class CollectionTableModel extends AbstractTableModel{
 
-	private String[] columns = {"Título", "Descripción", "Fecha de estreno", "Tapa", "Estado", "Colección"};
-	private ArrayList<Comic> comicList;
+	private String[] columns = {"Nombre", "Descripción"};
+	private ArrayList<ComicCollection> collectionsList;
 	
+	
+	
+	public CollectionTableModel(ArrayList<ComicCollection> collectionsList) {
+		this.collectionsList = collectionsList;
+	}
+
 	@Override
 	public int getRowCount() {
-		return comicList.size();
+		return collectionsList.size();
 	}
 
 	@Override
@@ -25,25 +31,17 @@ public class ComicTableModel extends AbstractTableModel{
 	}
 
 	@Override
-	public Object getValueAt(int rowIndex, int columnIndex) {	
-		if(rowIndex != -1 && comicList.size() > rowIndex) {
-			Comic comic = comicList.get(rowIndex);
+	public Object getValueAt(int rowIndex, int columnIndex) {
+		if(rowIndex != -1 && collectionsList.size() > rowIndex) {
+			ComicCollection comicCollection = collectionsList.get(rowIndex);
 			switch(columnIndex) {
 				case 0:
-					return comic.getTitle();
+					return comicCollection.getName();
 				case 1:
-					return comic.getDescription();
-				case 2:
-					return comic.getReleaseDate();
-				case 3:
-					return comic.getCover();
-				case 4:
-					return comic.getStatus();
-				case 5:
-					return comic.getCollection().getName();
+					return comicCollection.getDescription();
 				default:
 					return null;
-			} 
+			}
 		} else return null;
 	}
 	
@@ -72,5 +70,4 @@ public class ComicTableModel extends AbstractTableModel{
 		columns[index] = name;		
 	}
 	
-
 }

@@ -25,6 +25,12 @@ import javax.swing.JLabel;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.BoxLayout;
+import javax.swing.border.EmptyBorder;
 
 /**
  * Pantalla principal de la aplicación
@@ -39,9 +45,9 @@ public class MainWindow {
 	private JMenuItem mntmGalician;
 	private JMenu helpMenu;
 	private JMenuItem mntmShowHelp;
-	private JLabel lblWelcomeMessage;
-	private JLabel lblContinueMessage;
 	private JMenu fileMenu;
+	private JLabel lblWelcomeMessage;
+	private JButton btnViewCollections;
 
 	/**
 	 * Lanza la aplicación
@@ -89,22 +95,32 @@ public class MainWindow {
 		
 		JPanel bottomPanel = new JPanel();
 		windowPanel.add(bottomPanel, BorderLayout.SOUTH);
+		bottomPanel.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
 		
 		JButton btnContinue = new JButton("Continuar");
 		bottomPanel.add(btnContinue);
 		
-		JPanel centralPanel = new JPanel();
-		FlowLayout fl_centralPanel = (FlowLayout) centralPanel.getLayout();
-		fl_centralPanel.setVgap(100);
-		windowPanel.add(centralPanel, BorderLayout.CENTER);
+		JPanel actionPanel = new JPanel();
+		windowPanel.add(actionPanel, BorderLayout.CENTER);
+		actionPanel.setLayout(new BorderLayout(0, 0));
 		
-		lblWelcomeMessage = new JLabel("\u00A1Bienvenido a la librer\u00EDa!");
-		lblWelcomeMessage.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		centralPanel.add(lblWelcomeMessage);
+		JPanel tagPanel = new JPanel();
+		tagPanel.setBorder(new EmptyBorder(150, 0, 0, 0));
+		actionPanel.add(tagPanel, BorderLayout.CENTER);
+		tagPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		lblContinueMessage = new JLabel("Para ver el cat\u00E1logo de c\u00F3mics pulsa en continuar");
-		lblContinueMessage.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		centralPanel.add(lblContinueMessage);
+		lblWelcomeMessage = new JLabel("\u00A1Bienvenido a la librer\u00EDa! Hecha un vistazo a nuestros c\u00F3mics y colecciones.");
+		lblWelcomeMessage.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tagPanel.add(lblWelcomeMessage);
+		
+		JPanel buttonPanel = new JPanel();
+		actionPanel.add(buttonPanel, BorderLayout.SOUTH);
+		
+		JButton btnViewComics = new JButton("Ver c\u00F3mics");
+		buttonPanel.add(btnViewComics);
+		
+		btnViewCollections = new JButton("Ver colecciones");
+		buttonPanel.add(btnViewCollections);
 		
 		JMenuBar menuBar = new JMenuBar();
 		frmProyectoFinDe.setJMenuBar(menuBar);
@@ -169,7 +185,7 @@ public class MainWindow {
 		mntmGalician.setText(rb.getString("mntmGalician"));
 		mntmShowHelp.setText(rb.getString("mntmShowHelp"));
 		lblWelcomeMessage.setText(rb.getString("lblWelcomeMessage"));
-		lblContinueMessage.setText(rb.getString("lblContinueMessage"));
+		btnViewCollections.setText("btnViewCollections");		
 	}
 	
 	/**

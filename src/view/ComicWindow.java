@@ -12,6 +12,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 /**
  * Pantalla para las operaciones con los cómics
@@ -118,6 +120,14 @@ public class ComicWindow extends JDialog {
 		{
 			JMenuBar menuBar = new JMenuBar();
 			setJMenuBar(menuBar);
+			{
+				JMenu mnReports = new JMenu("Informes");
+				menuBar.add(mnReports);
+				{
+					JMenuItem mntmViewReports = new JMenuItem("Ver informes");
+					mnReports.add(mntmViewReports);
+				}
+			}
 		}
 		
 	}

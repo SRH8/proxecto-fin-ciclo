@@ -43,6 +43,7 @@ public class MainWindow {
 	private JMenu fileMenu;
 	private JLabel lblWelcomeMessage;
 	private JButton btnViewCollections;
+	private JButton btnExit;
 
 	/**
 	 * Lanza la aplicación
@@ -92,8 +93,8 @@ public class MainWindow {
 		windowPanel.add(bottomPanel, BorderLayout.SOUTH);
 		bottomPanel.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
 		
-		JButton btnContinue = new JButton("Continuar");
-		bottomPanel.add(btnContinue);
+		btnExit = new JButton("Salir");
+		bottomPanel.add(btnExit);
 		
 		JPanel actionPanel = new JPanel();
 		windowPanel.add(actionPanel, BorderLayout.CENTER);
@@ -180,7 +181,9 @@ public class MainWindow {
 		mntmGalician.setText(rb.getString("mntmGalician"));
 		mntmShowHelp.setText(rb.getString("mntmShowHelp"));
 		lblWelcomeMessage.setText(rb.getString("lblWelcomeMessage"));
-		btnViewCollections.setText("btnViewCollections");		
+		btnViewCollections.setText(rb.getString("btnViewCollections"));
+		btnExit.setText(rb.getString("mntmExit"));
+		
 	}
 	
 	/**

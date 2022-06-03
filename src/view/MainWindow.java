@@ -25,11 +25,6 @@ import javax.swing.JLabel;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.BoxLayout;
 import javax.swing.border.EmptyBorder;
 
 /**

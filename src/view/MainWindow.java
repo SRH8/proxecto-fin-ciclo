@@ -72,12 +72,13 @@ public class MainWindow {
 	 * Inicializa los contenidos de la pantalla
 	 */
 	private void initialize() {
+		MainWindowController mainWindowController = new MainWindowController();
+		
 		frmProyectoFinDe = new JFrame();
 		frmProyectoFinDe.setMinimumSize(new Dimension(800, 400));
 		frmProyectoFinDe.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				MainWindowController mainWindowController = new MainWindowController();
 				mainWindowController.exitApp(language);
 			}
 		});
@@ -94,6 +95,11 @@ public class MainWindow {
 		bottomPanel.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
 		
 		btnExit = new JButton("Salir");
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mainWindowController.exitApp(language);
+			}
+		});
 		bottomPanel.add(btnExit);
 		
 		JPanel actionPanel = new JPanel();
@@ -113,9 +119,21 @@ public class MainWindow {
 		actionPanel.add(buttonPanel, BorderLayout.SOUTH);
 		
 		JButton btnViewComics = new JButton("Ver c\u00F3mics");
+		btnViewComics.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ComicWindow comicWindow = new ComicWindow();
+				comicWindow.setVisible(true);
+			}
+		});
 		buttonPanel.add(btnViewComics);
 		
 		btnViewCollections = new JButton("Ver colecciones");
+		btnViewCollections.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CollectionWindow collectionWindow = new CollectionWindow();
+				collectionWindow.setVisible(true);
+			}
+		});
 		buttonPanel.add(btnViewCollections);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -169,7 +187,7 @@ public class MainWindow {
 	/**
 	 * Traduce la pantalla al idioma especificado
 	 * 
-	 * @param Idioma al que va a ser traducida la pantalla
+	 * @param language idioma al que va a ser traducida la pantalla
 	 */
 	private void translate(String language) {
 		ResourceBundle rb = ResourceBundle.getBundle(language);

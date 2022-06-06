@@ -10,6 +10,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ResourceBundle;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JMenu;
@@ -25,6 +26,8 @@ public class ComicWindow extends JDialog {
 	private JButton btnDelete;
 	private JButton btnEdit;
 	private JButton btnAdd;
+	private String language = MainWindow.language;
+	private JButton btnClose;
 
 	/**
 	 * Lanza la pantalla
@@ -107,7 +110,7 @@ public class ComicWindow extends JDialog {
 				bottomPane.add(cancelPane, BorderLayout.SOUTH);
 				cancelPane.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
 				{
-					JButton btnClose = new JButton("Cerrar");
+					btnClose = new JButton("Cerrar");
 					btnClose.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							dispose();
@@ -129,7 +132,16 @@ public class ComicWindow extends JDialog {
 				}
 			}
 		}
-		
+		traducir(language);
 	}
-
+	
+	/**
+	 * Traduce la pantalla al idioma especificado
+	 * 
+	 * @param language idioma al que va a ser traducida la pantalla
+	 */
+	private void traducir (String language) {
+		ResourceBundle rb = ResourceBundle.getBundle(language);
+		btnClose.setText(rb.getString("btnClose"));	
+	}
 }

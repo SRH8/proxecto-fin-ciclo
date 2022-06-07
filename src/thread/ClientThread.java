@@ -15,12 +15,12 @@ import javax.swing.JOptionPane;
 public class ClientThread extends Thread {
 	
 	/**
-	 * socket del cliente
+	 * Socket del cliente
 	 */
 	private Socket clientSocket;
 	
 	/**
-	 * orden que recibe el hilo
+	 * Orden que recibe el hilo
 	 */
     private String command;
     
@@ -49,7 +49,7 @@ public class ClientThread extends Thread {
 				serverCommand = inputFromServer.readUTF();
 				
 				switch(serverCommand) {
-					case "listar" -> {
+					case "listarColeccionOK" -> {
 						
 					}
 					case "insertar" -> {

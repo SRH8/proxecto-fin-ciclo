@@ -9,7 +9,7 @@ import model.entities.ComicCollection;
 
 /**
  * 
- * @author sergi
+ * @author Sergio Fraga
  */
 public class ComicCollectionDAO implements IComicCollection{
 
@@ -21,7 +21,4 @@ public class ComicCollectionDAO implements IComicCollection{
 		
 		return collectionList;	
 	}
-
-	
-	
 }

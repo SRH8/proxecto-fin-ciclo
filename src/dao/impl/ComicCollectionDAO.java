@@ -16,7 +16,7 @@ public class ComicCollectionDAO implements IComicCollection{
 	@Override
 	public ArrayList<ComicCollection> listCollections(Socket clientSocket) throws IOException, ClassNotFoundException {
 		ObjectInputStream inputObject = new ObjectInputStream(clientSocket.getInputStream());
-		
+		//System.out.println("lista cliente " + inputObject.readObject());
 		ArrayList<ComicCollection> collectionList = (ArrayList<ComicCollection>) inputObject.readObject();
 		
 		return collectionList;	

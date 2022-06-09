@@ -5,7 +5,14 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ConnectException;
 import java.net.Socket;
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+
+import dao.impl.ComicCollectionDAO;
+import model.entities.ComicCollection;
+import view.model.CollectionTableModel;
 
 /**
  * Hilo del cliente
@@ -25,14 +32,21 @@ public class ClientThread extends Thread {
     private String command;
     
     /**
+     * Tabla que utiliza el thread
+     */
+    private JTable table;
+    
+    /**
      * Crea un nuevo thread
      * 
      * @param clientSocket socket del cliente
      * @param command orden que recibe
+     * @param table tabla que utiliza el thread
      */
-	public ClientThread(Socket clientSocket, String command) {
+	public ClientThread(Socket clientSocket, String command, JTable table) {
 		this.clientSocket = clientSocket;
 		this.command = command;
+		this.table = table;
 	}
 	
 	
@@ -47,10 +61,13 @@ public class ClientThread extends Thread {
 				outputToServer.writeUTF(command);
 				
 				serverCommand = inputFromServer.readUTF();
-				
+				System.out.println("COMANDO QUE LLEGA AL CLIENTE DEL SERVER " + serverCommand);
 				switch(serverCommand) {
 					case "listarColeccionOK" -> {
-						
+						ComicCollectionDAO comicCollectionDAO = new ComicCollectionDAO();
+						ArrayList<ComicCollection> collectionList = comicCollectionDAO.listCollections(clientSocket);
+						System.out.println(collectionList.get(0).getName());
+						table.setModel(new CollectionTableModel(collectionList));				
 					}
 					case "insertar" -> {
 						

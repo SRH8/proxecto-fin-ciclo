@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import controller.MainWindowController;
+import thread.ClientThread;
+
 import java.awt.BorderLayout;
 import javax.help.HelpBroker;
 import javax.help.HelpSet;
@@ -19,6 +21,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.net.MalformedURLException;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javax.swing.JLabel;

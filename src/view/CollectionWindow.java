@@ -8,8 +8,12 @@ import javax.swing.JPanel;
 import javax.swing.JMenuBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import thread.ClientThread;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.ResourceBundle;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -28,6 +32,7 @@ public class CollectionWindow extends JDialog {
 	private JButton btnAdd;
 	private String language = MainWindow.language;
 	private JButton btnClose;
+	private Socket clientSocket;
 
 	/**
 	 * Lanza la pantalla
@@ -88,6 +93,26 @@ public class CollectionWindow extends JDialog {
 				{
 					btnAdd = new JButton("A\u00F1adir");
 					btnAdd.setVisible(false);
+					{
+						JButton btnNewButton = new JButton("New button");
+						btnNewButton.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								try {
+									clientSocket = new Socket("localhost", 8080);
+								} catch (UnknownHostException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								} catch (IOException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+								ClientThread clientThread = new ClientThread(clientSocket, "listarColeccion", collectionTable);
+								
+								clientThread.start();
+							}
+						});
+						actionPane.add(btnNewButton);
+					}
 					actionPane.add(btnAdd);
 				}
 				{
@@ -130,6 +155,7 @@ public class CollectionWindow extends JDialog {
 		}
 		
 		traducir(language);
+		
 	}
 	
 	/**
@@ -142,5 +168,4 @@ public class CollectionWindow extends JDialog {
 		this.setTitle(rb.getString("collectionTitle"));
 		btnClose.setText(rb.getString("btnClose"));	
 	}
-
 }

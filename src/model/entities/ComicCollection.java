@@ -1,11 +1,13 @@
 package model.entities;
 
+import java.io.Serializable;
+
 /**
  * Modelo para las colecciones de comics
  * 
  * @author Sergio Fraga
  */
-public class ComicCollection {
+public class ComicCollection implements Serializable{
 	
 	/**
 	 * Identificador de la colección

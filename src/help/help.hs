@@ -20,7 +20,7 @@ PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp HelpSet Version 1.0//EN"
 
    <view>
       <name>Indice</name>
-      <label>Õndice</label>
+      <label>√çndice</label>
       <type>javax.help.IndexView</type>
       <data>index.xml</data>
    </view>
@@ -42,7 +42,7 @@ PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp HelpSet Version 1.0//EN"
    
    <presentation default=true>
 		<name>main window</name>
-		<size width="700" height="600" />
+		<size width="1000" height="600" />
 		<location x="200" y="200" />
 		<title>Proyecto fin de ciclo - Ayuda</title>
 		<toolbar>

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <index version="1.0">
-	<indexitem text="Manual" target="manual"/>
+	<indexitem text="Manual" target="manual">
+		<indexitem text="Pantalla principal" target="principal"/>
+	<indexitem/>
 </index>

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <toc version="1.0">
-	<tocitem text="Manual" target="manual"/>
+	<tocitem text="Manual" target="manual">
+		<tocitem text="Pantalla principal" target="principal"/>
+	 <tocitem/>
 </toc>

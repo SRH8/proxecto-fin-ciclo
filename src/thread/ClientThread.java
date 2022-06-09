@@ -61,7 +61,8 @@ public class ClientThread extends Thread {
 				outputToServer.writeUTF(command);
 				
 				serverCommand = inputFromServer.readUTF();
-				System.out.println("COMANDO QUE LLEGA AL CLIENTE DEL SERVER " + serverCommand);
+				
+		
 				switch(serverCommand) {
 					case "listarColeccionOK" -> {
 						ComicCollectionDAO comicCollectionDAO = new ComicCollectionDAO();
@@ -69,7 +70,7 @@ public class ClientThread extends Thread {
 						System.out.println(collectionList.get(0).getName());
 						table.setModel(new CollectionTableModel(collectionList));				
 					}
-					case "insertar" -> {
+					case "insertarColeccionOK" -> {
 						
 					}
 					case "borrar" -> {

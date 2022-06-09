@@ -2,4 +2,6 @@
 <map version="1.0">
 	<mapID target="manual" url="pages/Manual.html"/>
 	<mapID target="principal" url="pages/PantallaPrincipal.html"/>
+	<mapID target="verColecciones" url="pages/VerColecciones.html"/>
+	<mapID target="verComics" url="pages/VerComics.html"/>
 </map>

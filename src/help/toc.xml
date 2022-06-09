@@ -2,5 +2,7 @@
 <toc version="1.0">
 	<tocitem text="Manual" target="manual">
 		<tocitem text="Pantalla principal" target="principal"/>
+		<tocitem text="Pantalla de colecciones" target="verColecciones"/>
+		<tocitem text="Pantalla de comics" target="verComics"/>
 	 <tocitem/>
 </toc>

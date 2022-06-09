@@ -11,7 +11,7 @@ import model.entities.ComicCollection;
  */
 public class CollectionTableModel extends AbstractTableModel{
 
-	private String[] columns = {"Nombre", "Descripción"};
+	private String[] columns = {"Nombre", "Descripción", "Año de estreno"};
 	private ArrayList<ComicCollection> collectionsList;
 	
 	
@@ -39,6 +39,8 @@ public class CollectionTableModel extends AbstractTableModel{
 					return comicCollection.getName();
 				case 1:
 					return comicCollection.getDescription();
+				case 2:
+					return comicCollection.getReleaseYear();
 				default:
 					return null;
 			}

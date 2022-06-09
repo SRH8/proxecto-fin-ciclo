@@ -30,6 +30,11 @@ public class ComicCollection implements Serializable{
 	private byte[] image;
 	
 	/**
+	 * Año en que salió el primer cómic de la colección
+	 */
+	private String releaseYear;
+	
+	/**
 	 * Constructor para crear un objeto colección vacío
 	 */
 	public ComicCollection() {}
@@ -42,11 +47,12 @@ public class ComicCollection implements Serializable{
 	 * @param description descripción de la colección
 	 * @param image imagen de la colección
 	 */
-	public ComicCollection(int id, String name, String description, byte[] image) {
+	public ComicCollection(int id, String name, String description, byte[] image, String releaseYear) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.image = image;
+		this.releaseYear = releaseYear;
 	}
 
 	/**
@@ -119,5 +125,23 @@ public class ComicCollection implements Serializable{
 	 */
 	public void setImage(byte[] image) {
 		this.image = image;
+	}
+	
+	/**
+	 * Obtiene el año de estreno de la colección
+	 * 
+	 * @return año de estreno
+	 */
+	public String getReleaseYear() {
+		return releaseYear;
+	}
+
+	/**
+	 * Define el año de estreno de la colección
+	 * 
+	 * @param releaseYear año de estreno
+	 */
+	public void setReleaseYear(String releaseYear) {
+		this.releaseYear = releaseYear;
 	}
 }

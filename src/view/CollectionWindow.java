@@ -33,6 +33,7 @@ public class CollectionWindow extends JDialog {
 	private String language = MainWindow.language;
 	private JButton btnClose;
 	private Socket clientSocket;
+	private JButton btnListCollections;
 
 	/**
 	 * Lanza la pantalla
@@ -58,6 +59,26 @@ public class CollectionWindow extends JDialog {
 			JPanel topPanel = new JPanel();
 			getContentPane().add(topPanel, BorderLayout.NORTH);
 			topPanel.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
+			{
+				btnListCollections = new JButton("Ver colecciones");
+				topPanel.add(btnListCollections);
+				btnListCollections.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						try {
+							clientSocket = new Socket("localhost", 8080);
+						} catch (UnknownHostException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						ClientThread clientThread = new ClientThread(clientSocket, "listarColeccion", collectionTable);
+						
+						clientThread.start();
+					}
+				});
+			}
 		}
 		{
 			JScrollPane scrollPane = new JScrollPane();
@@ -93,26 +114,6 @@ public class CollectionWindow extends JDialog {
 				{
 					btnAdd = new JButton("A\u00F1adir");
 					btnAdd.setVisible(false);
-					{
-						JButton btnNewButton = new JButton("New button");
-						btnNewButton.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent e) {
-								try {
-									clientSocket = new Socket("localhost", 8080);
-								} catch (UnknownHostException e1) {
-									// TODO Auto-generated catch block
-									e1.printStackTrace();
-								} catch (IOException e1) {
-									// TODO Auto-generated catch block
-									e1.printStackTrace();
-								}
-								ClientThread clientThread = new ClientThread(clientSocket, "listarColeccion", collectionTable);
-								
-								clientThread.start();
-							}
-						});
-						actionPane.add(btnNewButton);
-					}
 					actionPane.add(btnAdd);
 				}
 				{
@@ -167,5 +168,6 @@ public class CollectionWindow extends JDialog {
 		ResourceBundle rb = ResourceBundle.getBundle(language);
 		this.setTitle(rb.getString("collectionTitle"));
 		btnClose.setText(rb.getString("btnClose"));	
+		btnListCollections.setText(rb.getString("btnListCollections"));
 	}
 }

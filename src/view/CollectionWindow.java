@@ -67,13 +67,14 @@ public class CollectionWindow extends JDialog {
 						try {
 							clientSocket = new Socket("localhost", 8080);
 						} catch (UnknownHostException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						} catch (IOException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-						ClientThread clientThread = new ClientThread(clientSocket, "listarColeccion", collectionTable);
+						
+						Object[] command = {"listarColeccion", null};
+						
+						ClientThread clientThread = new ClientThread(clientSocket, command, collectionTable);
 						
 						clientThread.start();
 					}

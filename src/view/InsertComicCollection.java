@@ -113,6 +113,13 @@ public class InsertComicCollection extends JDialog {
 		buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
 		
 		JButton btnInsert = new JButton("Insertar");
+		btnInsert.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+			}
+		});
 		buttonPanel.add(btnInsert);
 		
 		JButton btnCancel = new JButton("Cancelar");

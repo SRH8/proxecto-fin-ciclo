@@ -1,15 +1,14 @@
 package thread;
 
 import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.ConnectException;
 import java.net.Socket;
 import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-
 import dao.impl.ComicCollectionDAO;
 import model.entities.ComicCollection;
 import view.model.CollectionTableModel;
@@ -29,7 +28,7 @@ public class ClientThread extends Thread {
 	/**
 	 * Orden que recibe el hilo
 	 */
-    private String command;
+    private Object[] command;
     
     /**
      * Tabla que utiliza el thread
@@ -43,7 +42,7 @@ public class ClientThread extends Thread {
      * @param command orden que recibe
      * @param table tabla que utiliza el thread
      */
-	public ClientThread(Socket clientSocket, String command, JTable table) {
+	public ClientThread(Socket clientSocket, Object[] command, JTable table) {
 		this.clientSocket = clientSocket;
 		this.command = command;
 		this.table = table;
@@ -55,19 +54,19 @@ public class ClientThread extends Thread {
     	
     	try {
 			if(clientSocket != null) {
-				DataOutputStream outputToServer = new DataOutputStream(clientSocket.getOutputStream());
-				DataInputStream inputFromServer = new DataInputStream(clientSocket.getInputStream());
+				ObjectOutputStream outputToServer = new ObjectOutputStream(clientSocket.getOutputStream());
+				DataInputStream dataInputStream = new DataInputStream(clientSocket.getInputStream());
+				//ObjectInputStream inputFromServer = new ObjectInputStream(clientSocket.getInputStream());
 				
-				outputToServer.writeUTF(command);
+				outputToServer.writeObject(command);
 				
-				serverCommand = inputFromServer.readUTF();
+				serverCommand = dataInputStream.readUTF();
 				
 		
 				switch(serverCommand) {
 					case "listarColeccionOK" -> {
 						ComicCollectionDAO comicCollectionDAO = new ComicCollectionDAO();
 						ArrayList<ComicCollection> collectionList = comicCollectionDAO.listCollections(clientSocket);
-						System.out.println(collectionList.get(0).getName());
 						table.setModel(new CollectionTableModel(collectionList));				
 					}
 					case "insertarColeccionOK" -> {

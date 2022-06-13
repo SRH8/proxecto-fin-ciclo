@@ -1,7 +1,5 @@
 package model.entities;
 
-import java.util.Date;
-
 /**
  * Modelo de los comics de la librería
  * 
@@ -27,7 +25,7 @@ public class Comic {
 	/**
 	 * Fecha de estreno del cómic
 	 */
-	private Date releaseDate;
+	private String releaseDate;
 	
 	/**
 	 * Tipo de tapa del cómic
@@ -65,7 +63,7 @@ public class Comic {
 	 * @param collection colección a la que pertenece el cómic
 	 * @param status estado en el que se encuentra el cómic
 	 */
-	public Comic(int id, String title, String description, Date releaseDate, CoverType cover, Byte[] coverImage,
+	public Comic(int id, String title, String description, String releaseDate, CoverType cover, Byte[] coverImage,
 			ComicCollection collection, ComicStatus status) {
 		this.id = id;
 		this.title = title;
@@ -136,7 +134,7 @@ public class Comic {
 	 * 
 	 * @return fecha de estreno del cómic
 	 */
-	public Date getReleaseDate() {
+	public String getReleaseDate() {
 		return releaseDate;
 	}
 
@@ -145,7 +143,7 @@ public class Comic {
 	 * 
 	 * @param releaseDate
 	 */
-	public void setReleaseDate(Date releaseDate) {
+	public void setReleaseDate(String releaseDate) {
 		this.releaseDate = releaseDate;
 	}
 

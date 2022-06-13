@@ -5,10 +5,17 @@ import java.awt.EventQueue;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.FlowLayout;
+import java.awt.Image;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import controller.ImagePicker;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
@@ -22,7 +29,8 @@ public class InsertComic extends JDialog {
 	private JTextField txtName;
 	private JTextField txtDescription;
 	private JTextField txtReleaseDate;
-
+	private String imgPath;
+	private JLabel lblShowImage;
 	/**
 	 * Lanza la aplicación
 	 */
@@ -56,6 +64,17 @@ public class InsertComic extends JDialog {
 		centralPanel.add(lblImage);
 		
 		JButton btnSelectImage = new JButton("...");
+		btnSelectImage.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ImagePicker imagePicker = new ImagePicker();
+				imgPath = imagePicker.loadImage();
+				Image img  = new ImageIcon(imgPath).getImage();
+				Image newimg = img.getScaledInstance(182, 220,  java.awt.Image.SCALE_SMOOTH);
+				ImageIcon imageIcon = new ImageIcon(newimg); 
+				lblShowImage.setIcon(imageIcon);
+				System.out.println(lblShowImage.getText()); 
+			}
+		});
 		btnSelectImage.setBounds(77, 41, 33, 21);
 		centralPanel.add(btnSelectImage);
 		
@@ -86,7 +105,7 @@ public class InsertComic extends JDialog {
 		centralPanel.add(txtReleaseDate);
 		txtReleaseDate.setColumns(10);
 		
-		JLabel lblShowImage = new JLabel("");
+		lblShowImage = new JLabel("");
 		lblShowImage.setBounds(24, 84, 126, 158);
 		centralPanel.add(lblShowImage);
 		

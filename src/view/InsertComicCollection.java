@@ -4,6 +4,9 @@ import java.awt.EventQueue;
 
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
 import java.awt.BorderLayout;
 
 import javax.swing.ImageIcon;
@@ -17,6 +20,7 @@ import javax.swing.JTextField;
 import controller.ImagePicker;
 
 import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
 import java.awt.event.ActionEvent;
 
 /**
@@ -26,10 +30,16 @@ import java.awt.event.ActionEvent;
  */
 public class InsertComicCollection extends JDialog {
 	private JTextField txtName;
-	private JTextField txtDescription;
 	private JTextField txtReleaseDate;
 	private String imgPath;
 	private JLabel lblShowImage;
+	private JLabel lblImage;
+	private JLabel lblName;
+	private JLabel lblDescription;
+	private JLabel lblReleaseDate;
+	private JButton btnInsert;
+	private String language = MainWindow.language;
+	private JScrollPane scrollPane;
 	/**
 	 * Lanza la aplicación
 	 */
@@ -52,13 +62,13 @@ public class InsertComicCollection extends JDialog {
 	 */
 	public InsertComicCollection() {
 		setTitle("Insertar colecci\u00F3n");
-		setBounds(100, 100, 546, 349);
+		setBounds(100, 100, 677, 349);
 		
 		JPanel centralPanel = new JPanel();
 		getContentPane().add(centralPanel, BorderLayout.CENTER);
 		centralPanel.setLayout(null);
 		
-		JLabel lblImage = new JLabel("Imagen");
+		lblImage = new JLabel("Imagen");
 		lblImage.setBounds(24, 45, 45, 13);
 		centralPanel.add(lblImage);
 		
@@ -77,30 +87,25 @@ public class InsertComicCollection extends JDialog {
 		btnSelectImage.setBounds(77, 41, 33, 21);
 		centralPanel.add(btnSelectImage);
 		
-		JLabel lblName = new JLabel("Nombre");
-		lblName.setBounds(261, 45, 45, 13);
+		lblName = new JLabel("Nombre");
+		lblName.setBounds(237, 45, 72, 13);
 		centralPanel.add(lblName);
 		
-		JLabel lblDescription = new JLabel("Descripci\u00F3n");
-		lblDescription.setBounds(261, 92, 72, 13);
+		lblDescription = new JLabel("Descripci\u00F3n");
+		lblDescription.setBounds(237, 163, 72, 13);
 		centralPanel.add(lblDescription);
 		
-		JLabel lblReleaseDate = new JLabel("Fecha de estreno");
-		lblReleaseDate.setBounds(261, 138, 116, 13);
+		lblReleaseDate = new JLabel("Fecha de estreno");
+		lblReleaseDate.setBounds(237, 103, 108, 13);
 		centralPanel.add(lblReleaseDate);
 		
 		txtName = new JTextField();
-		txtName.setBounds(387, 42, 108, 19);
+		txtName.setBounds(350, 42, 108, 19);
 		centralPanel.add(txtName);
 		txtName.setColumns(10);
 		
-		txtDescription = new JTextField();
-		txtDescription.setBounds(387, 89, 108, 19);
-		centralPanel.add(txtDescription);
-		txtDescription.setColumns(10);
-		
 		txtReleaseDate = new JTextField();
-		txtReleaseDate.setBounds(387, 135, 108, 19);
+		txtReleaseDate.setBounds(350, 100, 108, 19);
 		centralPanel.add(txtReleaseDate);
 		txtReleaseDate.setColumns(10);
 		
@@ -108,11 +113,19 @@ public class InsertComicCollection extends JDialog {
 		lblShowImage.setBounds(24, 84, 126, 158);
 		centralPanel.add(lblShowImage);
 		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(350, 156, 282, 115);
+		centralPanel.add(scrollPane);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setLineWrap(true);
+		scrollPane.setViewportView(textArea);
+		
 		JPanel buttonPanel = new JPanel();
 		getContentPane().add(buttonPanel, BorderLayout.SOUTH);
 		buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
 		
-		JButton btnInsert = new JButton("Insertar");
+		btnInsert = new JButton("Insertar");
 		btnInsert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -130,5 +143,22 @@ public class InsertComicCollection extends JDialog {
 		});
 		buttonPanel.add(btnCancel);
 
+		translate(language);
+	}
+	
+	/**
+	 * Traduce la pantalla al idioma especificado
+	 * 
+	 * @param language idioma al que va a ser traducida la pantalla
+	 */
+	private void translate(String language) {
+	  ResourceBundle rb = ResourceBundle.getBundle(language);
+	  
+	  lblImage.setText(rb.getString("lblImage"));
+	  lblName.setText(rb.getString("lblName"));
+	  lblDescription.setText(rb.getString("lblDescription"));
+	  lblReleaseDate.setText(rb.getString("lblReleaseYear"));
+	  btnInsert.setText(rb.getString("btnInsert"));
+	  this.setTitle(rb.getString("insertCollectionTitle"));
 	}
 }

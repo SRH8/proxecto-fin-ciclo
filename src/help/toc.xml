@@ -2,7 +2,13 @@
 <toc version="1.0">
 	<tocitem text="Manual" target="manual">
 		<tocitem text="Pantalla principal" target="principal"/>
-		<tocitem text="Pantalla de colecciones" target="verColecciones"/>
-		<tocitem text="Pantalla de comics" target="verComics"/>
+		<tocitem text="Pantalla de colecciones" target="verColecciones">
+			<tocitem text="Insertar colecciones" target="insertarColecciones"/>
+			<tocitem text="Editar colecciones" target="editarColecciones"/>
+		</tocitem>
+		<tocitem text="Pantalla de comics" target="verComics">
+			<tocitem text="Insertar comics" target="insertarComics"/>
+			<tocitem text="Editar comics" target="editarComics"/>
+		</tocitem>
 	 <tocitem/>
 </toc>

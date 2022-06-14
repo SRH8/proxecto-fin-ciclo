@@ -4,4 +4,8 @@
 	<mapID target="principal" url="pages/PantallaPrincipal.html"/>
 	<mapID target="verColecciones" url="pages/VerColecciones.html"/>
 	<mapID target="verComics" url="pages/VerComics.html"/>
+	<mapID target="insertarColecciones" url="pages/InsertarColecciones.html"/>
+	<mapID target="insertarComics" url="pages/InsertarComics.html"/>
+	<mapID target="editarColecciones" url="pages/EditarColecciones.html"/>
+	<mapID target="editarComics" url="pages/EditarComics.html"/>
 </map>

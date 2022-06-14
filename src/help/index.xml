@@ -2,7 +2,13 @@
 <index version="1.0">
 	<indexitem text="Manual" target="manual">
 		<indexitem text="Pantalla principal" target="principal"/>
-		<indexitem text="Pantalla de colecciones" target="verColecciones"/>
-		<indexitem text="Pantalla de comics" target="verComics"/>
+		<indexitem text="Pantalla de colecciones" target="verColecciones">
+			<indexitem text="Insertar colecciones" target="insertarColecciones"/>
+			<indexitem text="Editar colecciones" target="editarColecciones"/>
+		</indexitem>
+		<indexitem text="Pantalla de comics" target="verComics"> 
+			<indexitem text="Insertar comics" target="insertarComics"/> 
+			<indexitem text="Editar comics" target="editarComics"/> 
+		</indexitem>
 	<indexitem/>
 </index>

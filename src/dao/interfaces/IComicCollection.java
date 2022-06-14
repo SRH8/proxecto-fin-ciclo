@@ -21,4 +21,14 @@ public interface IComicCollection {
 	 * @throws ClassNotFoundException
 	 */
 	public ArrayList<ComicCollection> listCollections (Socket clientSocket) throws IOException, ClassNotFoundException;
+	
+	/**
+	 * Obtiene la respuesta de insertar una colección en la base de datos
+	 * 
+	 * @param clientSocket socket del cliente
+	 * @return
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
+	public int insertCollection(Socket clientSocket) throws IOException, ClassNotFoundException;
 }

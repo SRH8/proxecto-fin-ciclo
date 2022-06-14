@@ -114,6 +114,12 @@ public class CollectionWindow extends JDialog {
 				bottomPane.add(actionPane, BorderLayout.NORTH);
 				{
 					btnAdd = new JButton("A\u00F1adir");
+					btnAdd.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							InsertComicCollection insertComicCollection = new InsertComicCollection();
+							insertComicCollection.setVisible(true);
+						}
+					});
 					btnAdd.setVisible(false);
 					actionPane.add(btnAdd);
 				}

@@ -22,4 +22,12 @@ public class ComicCollectionDAO implements IComicCollection{
 		
 		return collectionList;	
 	}
+
+	@Override
+	public int insertCollection(Socket clientSocket) throws IOException, ClassNotFoundException {
+		ObjectInputStream inputObject = new ObjectInputStream(clientSocket.getInputStream());
+		int result =  inputObject.readInt();
+		
+		return result;
+	}
 }

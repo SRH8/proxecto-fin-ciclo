@@ -56,7 +56,7 @@ public class ClientThread extends Thread {
 			if(clientSocket != null) {
 				ObjectOutputStream outputToServer = new ObjectOutputStream(clientSocket.getOutputStream());
 				DataInputStream dataInputStream = new DataInputStream(clientSocket.getInputStream());
-				//ObjectInputStream inputFromServer = new ObjectInputStream(clientSocket.getInputStream());
+				ComicCollectionDAO comicCollectionDAO = new ComicCollectionDAO();
 				
 				outputToServer.writeObject(command);
 				
@@ -65,12 +65,17 @@ public class ClientThread extends Thread {
 		
 				switch(serverCommand) {
 					case "listarColeccionOK" -> {
-						ComicCollectionDAO comicCollectionDAO = new ComicCollectionDAO();
 						ArrayList<ComicCollection> collectionList = comicCollectionDAO.listCollections(clientSocket);
 						table.setModel(new CollectionTableModel(collectionList));				
 					}
 					case "insertarColeccionOK" -> {
-						
+						int result = comicCollectionDAO.insertCollection(clientSocket);
+						System.out.println("NUMERO DE FILAS EN EL CLIENTE DESPUES DE INSERTAR " + result);
+						if(result > 0) {
+							JOptionPane.showMessageDialog(null, "Se ha insertado correctamente", "Insertar colección", JOptionPane.INFORMATION_MESSAGE);
+						} else {
+							JOptionPane.showMessageDialog(null, "No se ha podido insertar", "Error", JOptionPane.ERROR_MESSAGE);
+						}
 					}
 					case "borrar" -> {
 						

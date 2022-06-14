@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import controller.ImagePicker;
 
 import java.awt.event.ActionListener;
+import java.net.Socket;
 import java.util.ResourceBundle;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;

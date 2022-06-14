@@ -10,6 +10,11 @@ import java.io.Serializable;
 public class ComicCollection implements Serializable{
 	
 	/**
+	 * Identificador único de la clase
+	 */
+	private static final long serialVersionUID = 6529685098267757690L;
+	
+	/**
 	 * Identificador de la colección
 	 */
 	private int id;
@@ -42,13 +47,12 @@ public class ComicCollection implements Serializable{
 	/**
 	 * Constructor para crear un objeto colección
 	 * 
-	 * @param id identificador de la colección
 	 * @param name nombre de la colección
 	 * @param description descripción de la colección
 	 * @param image imagen de la colección
+	 * @param releaseYear año de estreno
 	 */
-	public ComicCollection(int id, String name, String description, byte[] image, String releaseYear) {
-		this.id = id;
+	public ComicCollection(String name, String description, byte[] image, String releaseYear) {
 		this.name = name;
 		this.description = description;
 		this.image = image;

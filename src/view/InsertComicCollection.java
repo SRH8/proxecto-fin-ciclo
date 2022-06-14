@@ -18,8 +18,15 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import controller.ImagePicker;
+import model.entities.ComicCollection;
+import thread.ClientThread;
 
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.nio.file.Files;
 import java.util.ResourceBundle;
 import java.awt.event.ActionEvent;
 
@@ -40,6 +47,9 @@ public class InsertComicCollection extends JDialog {
 	private JButton btnInsert;
 	private String language = MainWindow.language;
 	private JScrollPane scrollPane;
+	private Socket clientSocket;
+	private JTextArea textArea;
+	
 	/**
 	 * Lanza la aplicación
 	 */
@@ -117,7 +127,7 @@ public class InsertComicCollection extends JDialog {
 		scrollPane.setBounds(350, 156, 282, 115);
 		centralPanel.add(scrollPane);
 		
-		JTextArea textArea = new JTextArea();
+		textArea = new JTextArea();
 		textArea.setLineWrap(true);
 		scrollPane.setViewportView(textArea);
 		
@@ -128,10 +138,34 @@ public class InsertComicCollection extends JDialog {
 		btnInsert = new JButton("Insertar");
 		btnInsert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					clientSocket = new Socket("localhost", 8080);
+				} catch (UnknownHostException e1) {
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
 				
+				byte[] fileContent = null;
 				
+				if(imgPath != null) {
+					File file = new File(imgPath);
+					try {
+						fileContent = Files.readAllBytes(file.toPath());
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+				}
+								
+				ComicCollection collection = new ComicCollection(txtName.getText().trim(), textArea.getText(), fileContent, txtReleaseDate.getText().trim());
 				
+				Object[] command = {"insertarColeccion", collection};
+				
+				ClientThread clientThread = new ClientThread(clientSocket, command, null);
+				
+				clientThread.start();
 			}
+			
 		});
 		buttonPanel.add(btnInsert);
 		

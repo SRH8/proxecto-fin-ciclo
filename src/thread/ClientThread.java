@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import dao.impl.ComicCollectionDAO;
 import model.entities.ComicCollection;
+import net.sf.jasperreports.engine.JRResultSetDataSource;
 import view.CollectionWindow;
 import view.model.CollectionTableModel;
 
@@ -96,6 +97,10 @@ public class ClientThread extends Thread {
 						} else {
 						JOptionPane.showMessageDialog(null, "No se ha podido editar", "Error", JOptionPane.ERROR_MESSAGE);
 						}
+					}
+					case "informeColeccionesOK" -> {
+						JRResultSetDataSource ds = comicCollectionDAO.showCollectionReport(clientSocket);
+						CollectionWindow.dataSource = ds;
 					}
 				}
 			} else {

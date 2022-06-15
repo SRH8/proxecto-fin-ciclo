@@ -26,6 +26,15 @@ import java.awt.event.ActionEvent;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRResultSetDataSource;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
+
+
 /**
  * Pantalla para las operaciones con las colecciones de cómics
  * 
@@ -41,6 +50,8 @@ public class CollectionWindow extends JDialog {
 	private Socket clientSocket;
 	private JButton btnListCollections;
 	public static ArrayList<ComicCollection> collectionList = new ArrayList<>();
+	private JMenuItem mntmCollectionsReport;
+	public static JRResultSetDataSource dataSource = null;
 	
 	/**
 	 * Lanza la pantalla
@@ -199,8 +210,37 @@ public class CollectionWindow extends JDialog {
 				JMenu mnReports = new JMenu("Informes");
 				menuBar.add(mnReports);
 				{
-					JMenuItem mntmViewReports = new JMenuItem("Ver informes");
-					mnReports.add(mntmViewReports);
+					mntmCollectionsReport = new JMenuItem("Colecciones");
+					mntmCollectionsReport.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							/*
+							try {
+								clientSocket = new Socket("localhost", 8080);
+							} catch (UnknownHostException e1) {
+							 	e1.printStackTrace();
+							} catch (IOException e1) {
+								e1.printStackTrace();
+							}
+																						
+							Object[] command = {"informeColecciones", null};
+												
+							ClientThread clientThread = new ClientThread(clientSocket, command, collectionTable);
+												
+							clientThread.start();
+							
+							String reportPath = "./src/reports/CollectionReport.jrxml";
+							
+							try {
+								JasperReport report = JasperCompileManager.compileReport(reportPath);
+								JasperPrint visor = JasperFillManager.fillReport(report, null, dataSource);
+								JasperViewer.viewReport(visor, false);
+							} catch (JRException e1) {
+								
+								e1.printStackTrace();
+							}*/
+						}
+					});
+					mnReports.add(mntmCollectionsReport);
 				}
 			}
 		}
@@ -219,5 +259,6 @@ public class CollectionWindow extends JDialog {
 		this.setTitle(rb.getString("collectionTitle"));
 		btnClose.setText(rb.getString("btnClose"));	
 		btnListCollections.setText(rb.getString("btnListCollections"));
+		mntmCollectionsReport.setText(rb.getString("collectionTitle"));
 	}
 }

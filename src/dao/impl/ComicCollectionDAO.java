@@ -6,6 +6,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import dao.interfaces.IComicCollection;
 import model.entities.ComicCollection;
+import net.sf.jasperreports.engine.JRResultSetDataSource;
 
 /**
  * Implementación del ComicCollectionDAO
@@ -45,5 +46,14 @@ public class ComicCollectionDAO implements IComicCollection{
 		int result =  inputObject.readInt();
 		
 		return result;	
+	}
+
+	@Override
+	public JRResultSetDataSource showCollectionReport(Socket clientSocket) throws IOException, ClassNotFoundException {
+		ObjectInputStream inputObject = new ObjectInputStream(clientSocket.getInputStream());
+		
+		JRResultSetDataSource ds = (JRResultSetDataSource) inputObject.readObject();
+		
+		return ds;
 	}
 }

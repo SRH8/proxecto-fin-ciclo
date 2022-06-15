@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
 import model.entities.ComicCollection;
+import net.sf.jasperreports.engine.JRResultSetDataSource;
 
 /**
  * Interface para las colecciones de cómics
@@ -52,5 +53,15 @@ public interface IComicCollection {
 	 * @throws ClassNotFoundException
 	 */
 	public int editCollection(Socket clientSocket) throws IOException, ClassNotFoundException;
+	
+	/**
+	 * Obtiene el data source que será usado en el informe de colecciones
+	 * 
+	 * @param clientSocket socket del cliente
+	 * @return data source
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
+	public JRResultSetDataSource showCollectionReport(Socket clientSocket) throws IOException, ClassNotFoundException;
 	
 }

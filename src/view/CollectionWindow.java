@@ -9,6 +9,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import controller.ComicCollectionController;
 import model.entities.ComicCollection;
 import thread.ClientThread;
 import view.model.CollectionTableModel;
@@ -138,26 +139,29 @@ public class CollectionWindow extends JDialog {
 					btnDelete = new JButton("Eliminar");
 					btnDelete.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
+							ComicCollectionController collectionController = new ComicCollectionController();
 							
+							int confirmation = collectionController.showConfirmationMessage(language);
 							
-							
-							int row = collectionTable.getSelectedRow();
-							
-							try {
-								clientSocket = new Socket("localhost", 8080);
-							} catch (UnknownHostException e1) {
-							 	e1.printStackTrace();
-							} catch (IOException e1) {
-								e1.printStackTrace();
-							}
-												
-							ComicCollection comicCollection = collectionList.get(row);		
-							System.out.println(comicCollection.toString());										
-							Object[] command = {"eliminarColeccion", comicCollection};
-												
-							ClientThread clientThread = new ClientThread(clientSocket, command, collectionTable);
-												
-							clientThread.start();
+							if(confirmation == 0) {
+								int row = collectionTable.getSelectedRow();
+								
+								try {
+									clientSocket = new Socket("localhost", 8080);
+								} catch (UnknownHostException e1) {
+								 	e1.printStackTrace();
+								} catch (IOException e1) {
+									e1.printStackTrace();
+								}
+													
+								ComicCollection comicCollection = collectionList.get(row);		
+								System.out.println(comicCollection.toString());										
+								Object[] command = {"eliminarColeccion", comicCollection};
+													
+								ClientThread clientThread = new ClientThread(clientSocket, command, collectionTable);
+													
+								clientThread.start();
+							}				
 						}
 					});
 					btnDelete.setVisible(false);

@@ -43,4 +43,14 @@ public interface IComicCollection {
 	 */
 	public int deleteCollection(Socket clientSocket) throws IOException, ClassNotFoundException;
 	
+	/**
+	 * Obtiene la respuesta de editar una colección en la base de datos
+	 * 
+	 * @param clientSocket socket del cliente
+	 * @return resultado de la operación
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
+	public int editCollection(Socket clientSocket) throws IOException, ClassNotFoundException;
+	
 }

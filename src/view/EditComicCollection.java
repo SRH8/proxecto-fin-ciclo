@@ -15,7 +15,6 @@ import java.awt.FlowLayout;
 import java.awt.Image;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import controller.ImagePicker;
@@ -33,47 +32,28 @@ import java.util.ResourceBundle;
 import java.awt.event.ActionEvent;
 
 /**
- * Pantalla para insertar una colección
+ * Pantalla para editar una colección
  * 
  * @author Sergio Fraga
  */
-public class InsertComicCollection extends JDialog {
+public class EditComicCollection extends JDialog {
 	private JTextField txtName;
-	private JTextField txtReleaseDate;
 	private String imgPath;
 	private JLabel lblShowImage;
 	private JLabel lblImage;
 	private JLabel lblName;
 	private JLabel lblDescription;
-	private JLabel lblReleaseDate;
-	private JButton btnInsert;
+	private JButton btnEdit;
 	private String language = MainWindow.language;
 	private JScrollPane scrollPane;
 	private Socket clientSocket;
 	private JTextArea textArea;
-	
-	/**
-	 * Lanza la aplicación
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					InsertComicCollection dialog = new InsertComicCollection();
-					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-					dialog.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Crea el diálogo
 	 */
-	public InsertComicCollection() {
-		setTitle("Insertar colecci\u00F3n");
+	public EditComicCollection(ComicCollection comicCollection) {
+		setTitle("Editar colecci\u00F3n");
 		setBounds(100, 100, 677, 349);
 		
 		JPanel centralPanel = new JPanel();
@@ -99,26 +79,18 @@ public class InsertComicCollection extends JDialog {
 		centralPanel.add(btnSelectImage);
 		
 		lblName = new JLabel("Nombre");
-		lblName.setBounds(237, 45, 72, 13);
+		lblName.setBounds(237, 89, 72, 13);
 		centralPanel.add(lblName);
 		
 		lblDescription = new JLabel("Descripci\u00F3n");
-		lblDescription.setBounds(237, 163, 72, 13);
+		lblDescription.setBounds(237, 156, 72, 13);
 		centralPanel.add(lblDescription);
 		
-		lblReleaseDate = new JLabel("Fecha de estreno");
-		lblReleaseDate.setBounds(237, 103, 108, 13);
-		centralPanel.add(lblReleaseDate);
-		
 		txtName = new JTextField();
-		txtName.setBounds(350, 42, 108, 19);
+		txtName.setBounds(351, 86, 108, 19);
 		centralPanel.add(txtName);
 		txtName.setColumns(10);
-		
-		txtReleaseDate = new JTextField();
-		txtReleaseDate.setBounds(350, 100, 108, 19);
-		centralPanel.add(txtReleaseDate);
-		txtReleaseDate.setColumns(10);
+		txtName.setText(comicCollection.getName());
 		
 		lblShowImage = new JLabel("");
 		lblShowImage.setBounds(24, 84, 126, 158);
@@ -131,41 +103,43 @@ public class InsertComicCollection extends JDialog {
 		textArea = new JTextArea();
 		textArea.setLineWrap(true);
 		scrollPane.setViewportView(textArea);
+		textArea.setText(comicCollection.getDescription());
 		
 		JPanel buttonPanel = new JPanel();
 		getContentPane().add(buttonPanel, BorderLayout.SOUTH);
 		buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
 		
-		btnInsert = new JButton("Insertar");
-		btnInsert.addActionListener(new ActionListener() {
+		btnEdit = new JButton("Editar");
+		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(!txtName.getText().isBlank() && !txtReleaseDate.getText().isBlank() && !textArea.getText().isBlank()) {
-							
+				if(!txtName.getText().isBlank() && !textArea.getText().isBlank()) {
+					
 					try {
-					clientSocket = new Socket("localhost", 8080);
+						clientSocket = new Socket("localhost", 8080);
 					} catch (UnknownHostException e1) {
-					e1.printStackTrace();
+						e1.printStackTrace();
 					} catch (IOException e1) {
-					e1.printStackTrace();
+						e1.printStackTrace();
 					}
-				
+					
 					byte[] fileContent = null;
-				
+					
 					if(imgPath != null) {
 						File file = new File(imgPath);
 						try {
-						fileContent = Files.readAllBytes(file.toPath());
+							fileContent = Files.readAllBytes(file.toPath());
 						} catch (IOException e1) {
 							e1.printStackTrace();
 						}
 					}
-								
-					ComicCollection collection = new ComicCollection(txtName.getText().trim(), textArea.getText(), fileContent, txtReleaseDate.getText().trim());
-				
-					Object[] command = {"insertarColeccion", collection};
-				
+					comicCollection.setName(txtName.getText().trim());
+					comicCollection.setDescription(textArea.getText());
+					comicCollection.setImage(fileContent);
+					
+					Object[] command = {"editarColeccion", comicCollection};
+					
 					ClientThread clientThread = new ClientThread(clientSocket, command, null);
-				
+					
 					clientThread.start();
 				} else {
 					InsertComicCollectionController inserController = new InsertComicCollectionController();
@@ -174,7 +148,7 @@ public class InsertComicCollection extends JDialog {
 			}
 			
 		});
-		buttonPanel.add(btnInsert);
+		buttonPanel.add(btnEdit);
 		
 		JButton btnCancel = new JButton("Cancelar");
 		btnCancel.addActionListener(new ActionListener() {
@@ -198,8 +172,6 @@ public class InsertComicCollection extends JDialog {
 	  lblImage.setText(rb.getString("lblImage"));
 	  lblName.setText(rb.getString("lblName"));
 	  lblDescription.setText(rb.getString("lblDescription"));
-	  lblReleaseDate.setText(rb.getString("lblReleaseYear"));
-	  btnInsert.setText(rb.getString("btnInsert"));
-	  this.setTitle(rb.getString("insertCollectionTitle"));
 	}
 }
+

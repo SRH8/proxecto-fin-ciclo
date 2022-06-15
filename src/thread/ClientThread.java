@@ -72,7 +72,7 @@ public class ClientThread extends Thread {
 					}
 					case "insertarColeccionOK" -> {
 						int result = comicCollectionDAO.insertCollection(clientSocket);
-						System.out.println("NUMERO DE FILAS EN EL CLIENTE DESPUES DE INSERTAR " + result);
+			
 						if(result > 0) {
 							JOptionPane.showMessageDialog(null, "Se ha insertado correctamente", "Insertar colección", JOptionPane.INFORMATION_MESSAGE);
 						} else {
@@ -82,15 +82,20 @@ public class ClientThread extends Thread {
 					case "eliminarColeccionOK" -> {
 						int result = comicCollectionDAO.deleteCollection(clientSocket);
 						
-						System.out.println("NUMERO DE FILAS EN EL CLIENTE DESPUES DE INSERTAR " + result);
 						if(result > 0) {
 							JOptionPane.showMessageDialog(null, "Se ha eliminado correctamente", "Eliminar colección", JOptionPane.INFORMATION_MESSAGE);
 						} else {
 						JOptionPane.showMessageDialog(null, "No se ha podido eliminar", "Error", JOptionPane.ERROR_MESSAGE);
 						}
 					}
-					case "modificar" -> {
+					case "editarColeccionOK" -> {
+						int result = comicCollectionDAO.editCollection(clientSocket);
 						
+						if(result > 0) {
+							JOptionPane.showMessageDialog(null, "Se ha editado correctamente", "Editar colección", JOptionPane.INFORMATION_MESSAGE);
+						} else {
+						JOptionPane.showMessageDialog(null, "No se ha podido editar", "Error", JOptionPane.ERROR_MESSAGE);
+						}
 					}
 				}
 			} else {

@@ -132,6 +132,15 @@ public class CollectionWindow extends JDialog {
 				}
 				{
 					btnEdit = new JButton("Editar");
+					btnEdit.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							int row = collectionTable.getSelectedRow();
+							ComicCollection comicCollection = collectionList.get(row);
+							
+							EditComicCollection editComicCollection = new EditComicCollection(comicCollection);
+							editComicCollection.setVisible(true);
+						}
+					});
 					btnEdit.setVisible(false);
 					actionPane.add(btnEdit);
 				}

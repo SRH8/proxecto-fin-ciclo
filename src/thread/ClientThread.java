@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import dao.impl.ComicCollectionDAO;
 import model.entities.ComicCollection;
+import view.CollectionWindow;
 import view.model.CollectionTableModel;
 
 /**
@@ -67,6 +68,7 @@ public class ClientThread extends Thread {
 					case "listarColeccionOK" -> {
 						ArrayList<ComicCollection> collectionList = comicCollectionDAO.listCollections(clientSocket);
 						table.setModel(new CollectionTableModel(collectionList));				
+						CollectionWindow.collectionList = collectionList;
 					}
 					case "insertarColeccionOK" -> {
 						int result = comicCollectionDAO.insertCollection(clientSocket);
@@ -77,8 +79,15 @@ public class ClientThread extends Thread {
 							JOptionPane.showMessageDialog(null, "No se ha podido insertar", "Error", JOptionPane.ERROR_MESSAGE);
 						}
 					}
-					case "borrar" -> {
+					case "eliminarColeccionOK" -> {
+						int result = comicCollectionDAO.deleteCollection(clientSocket);
 						
+						System.out.println("NUMERO DE FILAS EN EL CLIENTE DESPUES DE INSERTAR " + result);
+						if(result > 0) {
+							JOptionPane.showMessageDialog(null, "Se ha eliminado correctamente", "Eliminar colección", JOptionPane.INFORMATION_MESSAGE);
+						} else {
+						JOptionPane.showMessageDialog(null, "No se ha podido eliminar", "Error", JOptionPane.ERROR_MESSAGE);
+						}
 					}
 					case "modificar" -> {
 						

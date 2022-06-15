@@ -72,4 +72,16 @@ public class CollectionTableModel extends AbstractTableModel{
 		columns[index] = name;		
 	}
 	
+	/**
+	 * Obtiene la colección de una fila en concreto
+	 * 
+	 * @param rowIndex índice de la fila
+	 * @return colección de cómic
+	 */
+	public ComicCollection getCollectionAtRow(int rowIndex) {
+		ComicCollection comicCollection = collectionsList.get(rowIndex);
+		
+		return comicCollection;
+	}
+	
 }

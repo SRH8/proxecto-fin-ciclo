@@ -26,9 +26,21 @@ public interface IComicCollection {
 	 * Obtiene la respuesta de insertar una colección en la base de datos
 	 * 
 	 * @param clientSocket socket del cliente
-	 * @return
+	 * @return resultado de la operación
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
 	public int insertCollection(Socket clientSocket) throws IOException, ClassNotFoundException;
+	
+	
+	/**
+	 * Obtiene la respuesta de eliminar una colección en la base de datos
+	 * 
+	 * @param clientSocket socket del cliente
+	 * @return resultado de la operación
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
+	public int deleteCollection(Socket clientSocket) throws IOException, ClassNotFoundException;
+	
 }

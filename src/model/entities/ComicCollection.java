@@ -1,6 +1,7 @@
 package model.entities;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 /**
  * Modelo para las colecciones de comics
@@ -8,7 +9,7 @@ import java.io.Serializable;
  * @author Sergio Fraga
  */
 public class ComicCollection implements Serializable{
-	
+
 	/**
 	 * Identificador único de la clase
 	 */
@@ -147,5 +148,11 @@ public class ComicCollection implements Serializable{
 	 */
 	public void setReleaseYear(String releaseYear) {
 		this.releaseYear = releaseYear;
+	}
+	
+	@Override
+	public String toString() {
+		return "ComicCollection [id=" + id + ", name=" + name + ", description=" + description + ", image="
+				+ Arrays.toString(image) + ", releaseYear=" + releaseYear + "]";
 	}
 }

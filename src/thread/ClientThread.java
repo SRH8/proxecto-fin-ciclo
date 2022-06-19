@@ -112,6 +112,15 @@ public class ClientThread extends Thread {
 						table.setModel(new ComicTableModel(comicList));				
 						ComicWindow.comicList = comicList;
 					}
+					case "eliminarComicOK" -> {
+						int result = comicDAO.deleteComic(clientSocket);
+						
+						if(result > 0) {
+							JOptionPane.showMessageDialog(null, "Se ha eliminado correctamente", "Eliminar cómic", JOptionPane.INFORMATION_MESSAGE);
+						} else {
+						JOptionPane.showMessageDialog(null, "No se ha podido eliminar", "Error", JOptionPane.ERROR_MESSAGE);
+						}
+					}
 				}
 			} else {
 				JOptionPane.showMessageDialog(null, "Fallo de conexión", "Cliente", JOptionPane.ERROR_MESSAGE);

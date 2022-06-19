@@ -23,4 +23,6 @@ public interface IComic {
 	 * @throws ClassNotFoundException
 	 */
 	public ArrayList<Comic> listComics (Socket clientSocket) throws IOException, ClassNotFoundException;
+	
+	public int deleteComic(Socket clientSocket) throws IOException, ClassNotFoundException;
 }

@@ -175,7 +175,7 @@ public class CollectionWindow extends JDialog {
 								}
 													
 								ComicCollection comicCollection = collectionList.get(row);		
-								System.out.println(comicCollection.toString());										
+																
 								Object[] command = {"eliminarColeccion", comicCollection};
 													
 								ClientThread clientThread = new ClientThread(clientSocket, command, collectionTable);

@@ -23,6 +23,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  * Pantalla para insertar un cómic
@@ -35,9 +36,9 @@ public class InsertComic extends JDialog {
 	private String imgPath;
 	private JLabel lblShowImage;
 	private String language = MainWindow.language;
-	private JLabel lblImage;
 	private JLabel lblReleaseDate;
 	private JLabel lblDescription;
+	private JLabel lblImage;
 	
 	/**
 	 * Lanza la aplicación
@@ -113,6 +114,7 @@ public class InsertComic extends JDialog {
 		centralPanel.add(lblCoverType);
 		
 		JComboBox cmbCoverType = new JComboBox();
+		cmbCoverType.setModel(new DefaultComboBoxModel(new String[] {"Dura", "Blanda"}));
 		cmbCoverType.setBounds(387, 149, 108, 21);
 		centralPanel.add(cmbCoverType);
 		
@@ -149,6 +151,11 @@ public class InsertComic extends JDialog {
 		buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
 		
 		JButton btnInsert = new JButton("Insertar");
+		btnInsert.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		buttonPanel.add(btnInsert);
 		
 		JButton btnCancel = new JButton("Cancelar");
@@ -159,6 +166,7 @@ public class InsertComic extends JDialog {
 		});
 		buttonPanel.add(btnCancel);
 
+		translate(language);
 	}
 	
 
@@ -172,6 +180,7 @@ public class InsertComic extends JDialog {
 	  this.setTitle(rb.getString("insertComicTitle"));
 	  lblDescription.setText(rb.getString("lblDescription"));
 	  lblReleaseDate.setText(rb.getString("lblReleaseDate"));
+	  lblImage.setText(rb.getString("lblImage"));
 	  
 	}
 }

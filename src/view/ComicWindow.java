@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.JMenuBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+
+import controller.ComicController;
 import model.entities.Comic;
 import model.entities.ComicCollection;
 import thread.ClientThread;
@@ -131,6 +133,31 @@ public class ComicWindow extends JDialog {
 				}
 				{
 					btnDelete = new JButton("Eliminar");
+					btnDelete.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							ComicController comicController = new ComicController();
+							
+							int confirmation = comicController.showConfirmationMessage(language);
+							
+							if(confirmation == 0) {
+								try {
+									clientSocket = new Socket("localhost", 8080);
+								} catch (UnknownHostException e1) {
+								 	e1.printStackTrace();
+								} catch (IOException e1) {
+									e1.printStackTrace();
+								}
+								
+								Comic comic = comicList.get(comicTable.getSelectedRow());
+								
+								Object[] command = {"eliminarComic", comic};
+								
+								ClientThread clientThread = new ClientThread(clientSocket, command, comicTable);
+								
+								clientThread.start();
+							}
+						}
+					});
 					btnDelete.setVisible(false);
 					actionPane.add(btnDelete);
 				}

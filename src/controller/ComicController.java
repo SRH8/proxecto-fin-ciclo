@@ -5,11 +5,11 @@ import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 /**
- * Controlador para la pantalla de colecciones
+ * Controlador para la pantalla de cómics
  * 
  * @author Sergio Fraga
  */
-public class ComicCollectionController {
+public class ComicController {
 	
 	/**
 	 * Muestra un mensaje de confirmación
@@ -23,9 +23,10 @@ public class ComicCollectionController {
 		String[] options = {rb.getString("msgYes"), rb.getString("msgNo")};
 		
 		int n = JOptionPane.showOptionDialog(null,
-				rb.getString("msgDeleteCollection"), "Eliminar colección", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
+				rb.getString("msgDeleteComic"), "Eliminar cómic", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
 				null, options,  options[0]);
 		
 		return n;
 	}
+
 }

@@ -19,4 +19,12 @@ public class ComicDAO implements IComic {
 		return comicList;	
 	}
 
+	@Override
+	public int deleteComic(Socket clientSocket) throws IOException, ClassNotFoundException {
+		ObjectInputStream inputObject = new ObjectInputStream(clientSocket.getInputStream());
+		int result =  inputObject.readInt();
+		
+		return result;	
+	}
+
 }

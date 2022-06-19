@@ -10,10 +10,14 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import dao.impl.ComicCollectionDAO;
+import dao.impl.ComicDAO;
+import model.entities.Comic;
 import model.entities.ComicCollection;
 import net.sf.jasperreports.engine.JRResultSetDataSource;
 import view.CollectionWindow;
+import view.ComicWindow;
 import view.model.CollectionTableModel;
+import view.model.ComicTableModel;
 
 /**
  * Hilo del cliente
@@ -59,6 +63,7 @@ public class ClientThread extends Thread {
 				ObjectOutputStream outputToServer = new ObjectOutputStream(clientSocket.getOutputStream());
 				DataInputStream dataInputStream = new DataInputStream(clientSocket.getInputStream());
 				ComicCollectionDAO comicCollectionDAO = new ComicCollectionDAO();
+				ComicDAO comicDAO = new ComicDAO();
 				
 				outputToServer.writeObject(command);
 				
@@ -101,6 +106,11 @@ public class ClientThread extends Thread {
 					case "informeColeccionesOK" -> {
 						JRResultSetDataSource ds = comicCollectionDAO.showCollectionReport(clientSocket);
 						CollectionWindow.dataSource = ds;
+					}
+					case "listarComicsOK" -> {
+						ArrayList<Comic> comicList = comicDAO.listComics(clientSocket);
+						table.setModel(new ComicTableModel(comicList));				
+						ComicWindow.comicList = comicList;
 					}
 				}
 			} else {

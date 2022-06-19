@@ -8,8 +8,15 @@ import javax.swing.JPanel;
 import javax.swing.JMenuBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import model.entities.Comic;
+import model.entities.ComicCollection;
+import thread.ClientThread;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -26,8 +33,10 @@ public class ComicWindow extends JDialog {
 	private JButton btnDelete;
 	private JButton btnEdit;
 	private JButton btnAdd;
+	private Socket clientSocket;
 	private String language = MainWindow.language;
 	private JButton btnClose;
+	public static ArrayList<Comic> comicList = new ArrayList<>();
 
 	/**
 	 * Lanza la pantalla
@@ -56,6 +65,27 @@ public class ComicWindow extends JDialog {
 			{
 				JButton btnSearch = new JButton("Buscar");
 				topPanel.add(btnSearch);
+			}
+			{
+				JButton btnListComics = new JButton("Ver comics");
+				btnListComics.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						try {
+							clientSocket = new Socket("localhost", 8080);
+						} catch (UnknownHostException e1) {
+							e1.printStackTrace();
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}
+						
+						Object[] command = {"listarComics", null};
+						
+						ClientThread clientThread = new ClientThread(clientSocket, command, comicTable);
+						
+						clientThread.start();
+					}
+				});
+				topPanel.add(btnListComics);
 			}
 		}
 		{

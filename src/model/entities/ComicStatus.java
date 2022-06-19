@@ -1,12 +1,19 @@
 package model.entities;
 
+import java.io.Serializable;
+
 /**
  * Modelo para el estado del comic
  * 
  * @author Sergio Fraga
  */
-public class ComicStatus {
+public class ComicStatus implements Serializable{
 	
+	/**
+	 * Identificador único de la clase
+	 */
+	private static final long serialVersionUID = 6529685098267757692L;
+
 	/**
 	 * Identificador del estado
 	 */

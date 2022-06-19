@@ -1,12 +1,19 @@
 package model.entities;
 
+import java.io.Serializable;
+
 /**
  * Modelo de los comics de la librería
  * 
  * @author Sergio Fraga
  */
-public class Comic {
+public class Comic implements Serializable{
 	
+	/**
+	 * Identificador único de la clase
+	 */
+	private static final long serialVersionUID = 6529685098267757691L;
+
 	/**
 	 * Identificador del cómic
 	 */
@@ -35,7 +42,7 @@ public class Comic {
 	/**
 	 * Imagen de portada del cómic
 	 */
-	private Byte[] coverImage;
+	private byte[] coverImage;
 	
 	/**
 	 * Colección a la que pertenece el cómic
@@ -63,7 +70,7 @@ public class Comic {
 	 * @param collection colección a la que pertenece el cómic
 	 * @param status estado en el que se encuentra el cómic
 	 */
-	public Comic(int id, String title, String description, String releaseDate, CoverType cover, Byte[] coverImage,
+	public Comic(int id, String title, String description, String releaseDate, CoverType cover, byte[] coverImage,
 			ComicCollection collection, ComicStatus status) {
 		this.id = id;
 		this.title = title;
@@ -170,7 +177,7 @@ public class Comic {
 	 * 
 	 * @return imagen de la portada
 	 */
-	public Byte[] getCoverImage() {
+	public byte[] getCoverImage() {
 		return coverImage;
 	}
 
@@ -179,7 +186,7 @@ public class Comic {
 	 * 
 	 * @param coverImage imagen
 	 */
-	public void setCoverImage(Byte[] coverImage) {
+	public void setCoverImage(byte[] coverImage) {
 		this.coverImage = coverImage;
 	}
 

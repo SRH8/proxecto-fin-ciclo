@@ -44,7 +44,7 @@ public class ComicTableModel extends AbstractTableModel{
 				case 3:
 					return comic.getCover();
 				case 4:
-					return comic.getStatus();
+					return comic.getStatus().getDescription();
 				case 5:
 					return comic.getCollection().getName();
 				default:

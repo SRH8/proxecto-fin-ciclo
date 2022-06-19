@@ -32,4 +32,13 @@ public class ComicDAO implements IComic {
 		return result;	
 	}
 
+	@Override
+	public ArrayList<Comic> searchComicByName(Socket clientSocket) throws IOException, ClassNotFoundException {
+		ObjectInputStream inputObject = new ObjectInputStream(clientSocket.getInputStream());
+		
+		ArrayList<Comic> comicList = (ArrayList<Comic>) inputObject.readObject();
+		
+		return comicList;
+	}
+
 }

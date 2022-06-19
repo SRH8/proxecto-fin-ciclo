@@ -131,6 +131,11 @@ public class ClientThread extends Thread {
 						ComicWindow.collectionList = (ArrayList<ComicCollection>) lists[0];
 						ComicWindow.statusList = (ArrayList<ComicStatus>) lists[1];
 					}
+					
+					case "buscarComicPorNombreOK" -> {
+						ArrayList<Comic> comicList = comicDAO.listComics(clientSocket);
+						table.setModel(new ComicTableModel(comicList));				
+					}
 				}
 			} else {
 				JOptionPane.showMessageDialog(null, "Fallo de conexión", "Cliente", JOptionPane.ERROR_MESSAGE);

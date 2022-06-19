@@ -69,6 +69,12 @@ public class ComicWindow extends JDialog {
 			topPanel.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
 			{
 				JButton btnSearch = new JButton("Buscar");
+				btnSearch.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						SearchComic searchComic = new SearchComic();
+						searchComic.setVisible(true);
+					}
+				});
 				topPanel.add(btnSearch);
 			}
 			{

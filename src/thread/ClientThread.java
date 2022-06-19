@@ -13,9 +13,11 @@ import dao.impl.ComicCollectionDAO;
 import dao.impl.ComicDAO;
 import model.entities.Comic;
 import model.entities.ComicCollection;
+import model.entities.ComicStatus;
 import net.sf.jasperreports.engine.JRResultSetDataSource;
 import view.CollectionWindow;
 import view.ComicWindow;
+import view.InsertComic;
 import view.model.CollectionTableModel;
 import view.model.ComicTableModel;
 
@@ -120,6 +122,14 @@ public class ClientThread extends Thread {
 						} else {
 						JOptionPane.showMessageDialog(null, "No se ha podido eliminar", "Error", JOptionPane.ERROR_MESSAGE);
 						}
+					}
+					case "cargarDatosPantallaComicOK" -> {
+						ObjectInputStream inputObject = new ObjectInputStream(clientSocket.getInputStream());
+						
+						Object[] lists = (Object[]) inputObject.readObject();
+						
+						ComicWindow.collectionList = (ArrayList<ComicCollection>) lists[0];
+						ComicWindow.statusList = (ArrayList<ComicStatus>) lists[1];
 					}
 				}
 			} else {

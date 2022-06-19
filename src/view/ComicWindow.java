@@ -12,6 +12,7 @@ import javax.swing.JTable;
 import controller.ComicController;
 import model.entities.Comic;
 import model.entities.ComicCollection;
+import model.entities.ComicStatus;
 import thread.ClientThread;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -39,6 +40,8 @@ public class ComicWindow extends JDialog {
 	private String language = MainWindow.language;
 	private JButton btnClose;
 	public static ArrayList<Comic> comicList = new ArrayList<>();
+	public static ArrayList<ComicCollection> collectionList = new ArrayList<>();
+	public static ArrayList<ComicStatus> statusList = new ArrayList<>();
 
 	/**
 	 * Lanza la pantalla
@@ -123,6 +126,27 @@ public class ComicWindow extends JDialog {
 				bottomPane.add(actionPane, BorderLayout.NORTH);
 				{
 					btnAdd = new JButton("A\u00F1adir");
+					btnAdd.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							try {
+								clientSocket = new Socket("localhost", 8080);
+							} catch (UnknownHostException e1) {
+								e1.printStackTrace();
+							} catch (IOException e1) {
+								e1.printStackTrace();
+							}
+							
+							Object[] command = {"cargarDatosPantallaComic", null};
+							
+							ClientThread clientThread = new ClientThread(clientSocket, command, comicTable);
+							
+							clientThread.start();
+							
+							InsertComic insertComic= new InsertComic(collectionList, statusList);
+							insertComic.setVisible(true);
+							
+						}
+					});
 					btnAdd.setVisible(false);
 					actionPane.add(btnAdd);
 				}

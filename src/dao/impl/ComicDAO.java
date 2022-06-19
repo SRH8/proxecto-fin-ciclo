@@ -8,6 +8,11 @@ import java.util.ArrayList;
 import dao.interfaces.IComic;
 import model.entities.Comic;
 
+/**
+ * Implementación del ComicDAO
+ * 
+ * @author Sergio Fraga
+ */
 public class ComicDAO implements IComic {
 
 	@Override

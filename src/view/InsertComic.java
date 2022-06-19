@@ -15,9 +15,12 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import controller.ImagePicker;
+import model.entities.ComicCollection;
+import model.entities.ComicStatus;
 
 import java.awt.event.ActionListener;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
@@ -39,28 +42,12 @@ public class InsertComic extends JDialog {
 	private JLabel lblReleaseDate;
 	private JLabel lblDescription;
 	private JLabel lblImage;
-	
-	/**
-	 * Lanza la aplicación
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					InsertComic dialog = new InsertComic();
-					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-					dialog.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Crea el diálogo
 	 */
-	public InsertComic() {
+	public InsertComic(ArrayList<ComicCollection> collectionList, ArrayList<ComicStatus> statusList) {
+		System.out.println(collectionList.get(0).toString());
 		setTitle("Insertar c\u00F3mic");
 		setBounds(100, 100, 736, 510);
 		
@@ -125,6 +112,7 @@ public class InsertComic extends JDialog {
 		JComboBox cmbCollection = new JComboBox();
 		cmbCollection.setBounds(387, 198, 108, 21);
 		centralPanel.add(cmbCollection);
+		cmbCollection.setModel(new DefaultComboBoxModel<ComicCollection>(collectionList.toArray(new ComicCollection[0])));
 		
 		JLabel lblStatus = new JLabel("Estado");
 		lblStatus.setBounds(261, 253, 72, 13);
@@ -133,6 +121,7 @@ public class InsertComic extends JDialog {
 		JComboBox cmbStatus = new JComboBox();
 		cmbStatus.setBounds(387, 249, 108, 21);
 		centralPanel.add(cmbStatus);
+		cmbStatus.setModel(new DefaultComboBoxModel<ComicStatus>(statusList.toArray(new ComicStatus[0])));
 		
 		lblDescription = new JLabel("Descripci\u00F3n");
 		lblDescription.setBounds(261, 294, 72, 13);

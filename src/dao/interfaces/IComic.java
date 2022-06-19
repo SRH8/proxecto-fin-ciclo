@@ -43,4 +43,24 @@ public interface IComic {
 	 * @throws ClassNotFoundException
 	 */
 	public ArrayList<Comic> searchComicByName(Socket clientSocket) throws IOException, ClassNotFoundException;
+	
+	/**
+	 * Busca un cómic por colección
+	 * 
+	 * @param clientSocket socket del cliente
+	 * @return lista de cómics
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
+	public ArrayList<Comic> searchComicByCollection(Socket clientSocket) throws IOException, ClassNotFoundException;
+	
+	/**
+	 * Obtiene el resultado de insertar un cómic
+	 * 
+	 * @param clientSocket socket del cliente
+	 * @return resultado de la operación
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
+	public int insertComic(Socket clientSocket) throws IOException, ClassNotFoundException;
 }

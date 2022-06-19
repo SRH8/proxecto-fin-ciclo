@@ -17,7 +17,6 @@ import model.entities.ComicStatus;
 import net.sf.jasperreports.engine.JRResultSetDataSource;
 import view.CollectionWindow;
 import view.ComicWindow;
-import view.InsertComic;
 import view.model.CollectionTableModel;
 import view.model.ComicTableModel;
 
@@ -120,21 +119,25 @@ public class ClientThread extends Thread {
 						if(result > 0) {
 							JOptionPane.showMessageDialog(null, "Se ha eliminado correctamente", "Eliminar cómic", JOptionPane.INFORMATION_MESSAGE);
 						} else {
-						JOptionPane.showMessageDialog(null, "No se ha podido eliminar", "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "No se ha podido eliminar", "Error", JOptionPane.ERROR_MESSAGE);
 						}
 					}
-					case "cargarDatosPantallaComicOK" -> {
-						ObjectInputStream inputObject = new ObjectInputStream(clientSocket.getInputStream());
-						
-						Object[] lists = (Object[]) inputObject.readObject();
-						
-						ComicWindow.collectionList = (ArrayList<ComicCollection>) lists[0];
-						ComicWindow.statusList = (ArrayList<ComicStatus>) lists[1];
-					}
-					
 					case "buscarComicPorNombreOK" -> {
-						ArrayList<Comic> comicList = comicDAO.listComics(clientSocket);
+						ArrayList<Comic> comicList = comicDAO.searchComicByName(clientSocket);
 						table.setModel(new ComicTableModel(comicList));				
+					}
+					case "buscarComicsPorColeccionOK" -> {
+						ArrayList<Comic> comicList = comicDAO.searchComicByCollection(clientSocket);
+						table.setModel(new ComicTableModel(comicList));	
+					}
+					case "insertarComicOK" -> {
+						int result = comicDAO.insertComic(clientSocket);
+						
+						if(result > 0) {
+							JOptionPane.showMessageDialog(null, "Se ha insertado correctamente", "Insertar cómic", JOptionPane.INFORMATION_MESSAGE);
+						} else {
+							JOptionPane.showMessageDialog(null, "No se ha podido insertar", "Error", JOptionPane.ERROR_MESSAGE);
+						}
 					}
 				}
 			} else {

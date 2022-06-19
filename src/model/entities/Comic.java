@@ -61,6 +61,7 @@ public class Comic implements Serializable{
 
 	/**
 	 * Constructor para crear un objeto cómic
+	 * 
 	 * @param id identificador del cómic
 	 * @param title título del cómic
 	 * @param description descripción del cómic
@@ -73,6 +74,30 @@ public class Comic implements Serializable{
 	public Comic(int id, String title, String description, String releaseDate, CoverType cover, byte[] coverImage,
 			ComicCollection collection, ComicStatus status) {
 		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.releaseDate = releaseDate;
+		this.cover = cover;
+		this.coverImage = coverImage;
+		this.collection = collection;
+		this.status = status;
+	}
+	
+	
+	
+	/**
+	 * Constructor para crear un objeto cómic
+	 * 
+	 * @param title título del cómic
+	 * @param description descripción del cómic
+	 * @param releaseDate fecha de estreno del cómic
+	 * @param cover tipo de tapa del cómic
+	 * @param coverImage imagen de portada del cómic
+	 * @param collection colección a la que pertenece el cómic
+	 * @param status estado en el que se encuentra el cómic
+	 */
+	public Comic(String title, String description, String releaseDate, CoverType cover, byte[] coverImage,
+			ComicCollection collection, ComicStatus status) {
 		this.title = title;
 		this.description = description;
 		this.releaseDate = releaseDate;

@@ -40,8 +40,6 @@ public class ComicWindow extends JDialog {
 	private String language = MainWindow.language;
 	private JButton btnClose;
 	public static ArrayList<Comic> comicList = new ArrayList<>();
-	public static ArrayList<ComicCollection> collectionList = new ArrayList<>();
-	public static ArrayList<ComicStatus> statusList = new ArrayList<>();
 
 	/**
 	 * Lanza la pantalla
@@ -134,23 +132,8 @@ public class ComicWindow extends JDialog {
 					btnAdd = new JButton("A\u00F1adir");
 					btnAdd.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							try {
-								clientSocket = new Socket("localhost", 8080);
-							} catch (UnknownHostException e1) {
-								e1.printStackTrace();
-							} catch (IOException e1) {
-								e1.printStackTrace();
-							}
-							
-							Object[] command = {"cargarDatosPantallaComic", null};
-							
-							ClientThread clientThread = new ClientThread(clientSocket, command, comicTable);
-							
-							clientThread.start();
-							
-							InsertComic insertComic= new InsertComic(collectionList, statusList);
+							InsertComic insertComic = new InsertComic();
 							insertComic.setVisible(true);
-							
 						}
 					});
 					btnAdd.setVisible(false);

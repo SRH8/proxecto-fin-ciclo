@@ -63,4 +63,14 @@ public interface IComic {
 	 * @throws ClassNotFoundException
 	 */
 	public int insertComic(Socket clientSocket) throws IOException, ClassNotFoundException;
+	
+	/**
+	 * Obtiene el resultado de editar un cómic
+	 * 
+	 * @param clientSocket socket del cliente
+	 * @return resultado de la operación
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
+	public int editComic(Socket clientSocket) throws IOException, ClassNotFoundException;
 }

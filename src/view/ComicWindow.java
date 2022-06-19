@@ -141,6 +141,15 @@ public class ComicWindow extends JDialog {
 				}
 				{
 					btnEdit = new JButton("Editar");
+					btnEdit.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							int row = comicTable.getSelectedRow();
+							Comic comic = comicList.get(row);
+							
+							EditComic editComic = new EditComic(comic);
+							editComic.setVisible(true);
+						}
+					});
 					btnEdit.setVisible(false);
 					actionPane.add(btnEdit);
 				}

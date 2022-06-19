@@ -56,7 +56,15 @@ public class ComicDAO implements IComic {
 		
 		int result =  inputObject.readInt();
 		
-		inputObject.close();
+		return result;
+	}
+
+	@Override
+	public int editComic(Socket clientSocket) throws IOException, ClassNotFoundException {
+		ObjectInputStream inputObject = new ObjectInputStream(clientSocket.getInputStream());
+		
+		int result =  inputObject.readInt();
+		
 		return result;
 	}
 

@@ -139,6 +139,15 @@ public class ClientThread extends Thread {
 							JOptionPane.showMessageDialog(null, "No se ha podido insertar", "Error", JOptionPane.ERROR_MESSAGE);
 						}
 					}
+					case "editarComicOK" -> {
+						int result = comicDAO.editComic(clientSocket);
+						
+						if(result > 0) {
+							JOptionPane.showMessageDialog(null, "Se ha editado correctamente", "Insertar cómic", JOptionPane.INFORMATION_MESSAGE);
+						} else {
+							JOptionPane.showMessageDialog(null, "No se ha podido editar", "Error", JOptionPane.ERROR_MESSAGE);
+						}
+					}
 				}
 			} else {
 				JOptionPane.showMessageDialog(null, "Fallo de conexión", "Cliente", JOptionPane.ERROR_MESSAGE);

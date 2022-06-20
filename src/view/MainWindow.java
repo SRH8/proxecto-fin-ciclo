@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import controller.MainWindowController;
+import controller.Pool;
 import thread.ClientThread;
 
 import java.awt.BorderLayout;
@@ -23,6 +24,7 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.Socket;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javax.swing.JLabel;
 import java.awt.FlowLayout;
@@ -69,6 +71,12 @@ public class MainWindow {
 	 */
 	public MainWindow() {
 		initialize();
+		try {
+			Pool.launchPool();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**

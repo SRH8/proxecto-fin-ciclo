@@ -206,8 +206,14 @@ public class ComicWindow extends JDialog {
 				JMenu mnReports = new JMenu("Informes");
 				menuBar.add(mnReports);
 				{
-					JMenuItem mntmViewReports = new JMenuItem("Ver informes");
-					mnReports.add(mntmViewReports);
+					JMenuItem mntmComicReport = new JMenuItem("C\u00F3mics");
+					mntmComicReport.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							ComicController comicController = new ComicController();
+							comicController.showComicReport(language);
+						}
+					});
+					mnReports.add(mntmComicReport);
 				}
 			}
 		}

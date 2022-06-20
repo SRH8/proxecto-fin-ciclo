@@ -51,7 +51,7 @@ public class CollectionWindow extends JDialog {
 	private JButton btnListCollections;
 	public static ArrayList<ComicCollection> collectionList = new ArrayList<>();
 	private JMenuItem mntmCollectionsReport;
-	public static JRResultSetDataSource dataSource = null;
+	public static JasperPrint visor = null;
 	
 	/**
 	 * Lanza la pantalla
@@ -213,31 +213,8 @@ public class CollectionWindow extends JDialog {
 					mntmCollectionsReport = new JMenuItem("Colecciones");
 					mntmCollectionsReport.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							/*
-							try {
-								clientSocket = new Socket("localhost", 8080);
-							} catch (UnknownHostException e1) {
-							 	e1.printStackTrace();
-							} catch (IOException e1) {
-								e1.printStackTrace();
-							}
-																						
-							Object[] command = {"informeColecciones", null};
-												
-							ClientThread clientThread = new ClientThread(clientSocket, command, collectionTable);
-												
-							clientThread.start();
-							
-							String reportPath = "./src/reports/CollectionReport.jrxml";
-							
-							try {
-								JasperReport report = JasperCompileManager.compileReport(reportPath);
-								JasperPrint visor = JasperFillManager.fillReport(report, null, dataSource);
-								JasperViewer.viewReport(visor, false);
-							} catch (JRException e1) {
-								
-								e1.printStackTrace();
-							}*/
+							ComicCollectionController collectionController = new ComicCollectionController();
+							collectionController.showCollectionReport(language);
 						}
 					});
 					mnReports.add(mntmCollectionsReport);

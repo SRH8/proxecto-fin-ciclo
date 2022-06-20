@@ -104,10 +104,6 @@ public class ClientThread extends Thread {
 						JOptionPane.showMessageDialog(null, "No se ha podido editar", "Error", JOptionPane.ERROR_MESSAGE);
 						}
 					}
-					case "informeColeccionesOK" -> {
-						JRResultSetDataSource ds = comicCollectionDAO.showCollectionReport(clientSocket);
-						CollectionWindow.dataSource = ds;
-					}
 					case "listarComicsOK" -> {
 						ArrayList<Comic> comicList = comicDAO.listComics(clientSocket);
 						table.setModel(new ComicTableModel(comicList));				

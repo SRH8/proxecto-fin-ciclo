@@ -4,6 +4,10 @@ import java.sql.Connection;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -54,5 +58,25 @@ public class ComicCollectionController {
 			JOptionPane.showMessageDialog(null, rb.getString("errorMsgCollectionReport"), "Error", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * Traduce una tabla
+	 * 
+	 * @param language idioma
+	 * @param comicTable tabla
+	 */
+	public void traducirTable(String language, JTable comicTable) {
+		ResourceBundle rb = ResourceBundle.getBundle(language);
+		
+		JTableHeader th = comicTable.getTableHeader();
+		TableColumnModel tcm = th.getColumnModel();
+		TableColumn tc = tcm.getColumn(0);
+		tc.setHeaderValue( rb.getString("lblName"));
+		tc = tcm.getColumn(1);
+		tc.setHeaderValue( rb.getString("lblDescription"));
+		tc = tcm.getColumn(2);
+		tc.setHeaderValue( rb.getString("lblReleaseYear"));
+		th.repaint();
 	}
 }

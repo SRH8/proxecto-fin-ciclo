@@ -8,6 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.JMenuBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 import controller.ComicController;
 import model.entities.Comic;

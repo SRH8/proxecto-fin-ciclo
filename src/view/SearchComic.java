@@ -116,7 +116,7 @@ public class SearchComic extends JDialog {
 					topPanel.add(labelPane);
 					labelPane.setLayout(new BoxLayout(labelPane, BoxLayout.Y_AXIS));
 					{
-						JLabel lblComicName = new JLabel("Comic");
+						JLabel lblComicName = new JLabel("C\u00F3mic");
 						lblComicName.setBorder(new EmptyBorder(0, 0, 2, 0));
 						labelPane.add(lblComicName);
 					}

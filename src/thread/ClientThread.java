@@ -7,8 +7,13 @@ import java.io.ObjectOutputStream;
 import java.net.ConnectException;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
+
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+
+import controller.ComicCollectionController;
+import controller.ComicController;
 import dao.impl.ComicCollectionDAO;
 import dao.impl.ComicDAO;
 import model.entities.Comic;
@@ -17,6 +22,7 @@ import model.entities.ComicStatus;
 import net.sf.jasperreports.engine.JRResultSetDataSource;
 import view.CollectionWindow;
 import view.ComicWindow;
+import view.MainWindow;
 import view.model.CollectionTableModel;
 import view.model.ComicTableModel;
 
@@ -65,6 +71,7 @@ public class ClientThread extends Thread {
 				DataInputStream dataInputStream = new DataInputStream(clientSocket.getInputStream());
 				ComicCollectionDAO comicCollectionDAO = new ComicCollectionDAO();
 				ComicDAO comicDAO = new ComicDAO();
+				ResourceBundle rb = ResourceBundle.getBundle(MainWindow.language);
 				
 				outputToServer.writeObject(command);
 				
@@ -76,72 +83,80 @@ public class ClientThread extends Thread {
 						ArrayList<ComicCollection> collectionList = comicCollectionDAO.listCollections(clientSocket);
 						table.setModel(new CollectionTableModel(collectionList));				
 						CollectionWindow.collectionList = collectionList;
+						ComicCollectionController collectionController = new ComicCollectionController();
+						collectionController.traducirTable(MainWindow.language, table);
 					}
 					case "insertarColeccionOK" -> {
 						int result = comicCollectionDAO.insertCollection(clientSocket);
 			
 						if(result > 0) {
-							JOptionPane.showMessageDialog(null, "Se ha insertado correctamente", "Insertar colección", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(null, rb.getString("msgInsert"), rb.getString("btnInsert") + " colección", JOptionPane.INFORMATION_MESSAGE);
 						} else {
-							JOptionPane.showMessageDialog(null, "No se ha podido insertar", "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, rb.getString("msgInsertFail"), "Error", JOptionPane.ERROR_MESSAGE);
 						}
 					}
 					case "eliminarColeccionOK" -> {
 						int result = comicCollectionDAO.deleteCollection(clientSocket);
 						
 						if(result > 0) {
-							JOptionPane.showMessageDialog(null, "Se ha eliminado correctamente", "Eliminar colección", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(null, rb.getString("msgDelete"), "Eliminar colección", JOptionPane.INFORMATION_MESSAGE);
 						} else {
-						JOptionPane.showMessageDialog(null, "No se ha podido eliminar", "Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, rb.getString("msgDeleteFail"), "Error", JOptionPane.ERROR_MESSAGE);
 						}
 					}
 					case "editarColeccionOK" -> {
 						int result = comicCollectionDAO.editCollection(clientSocket);
 						
 						if(result > 0) {
-							JOptionPane.showMessageDialog(null, "Se ha editado correctamente", "Editar colección", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(null, rb.getString("msgEdit"), "Editar colección", JOptionPane.INFORMATION_MESSAGE);
 						} else {
-						JOptionPane.showMessageDialog(null, "No se ha podido editar", "Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, rb.getString("msgEditFail"), "Error", JOptionPane.ERROR_MESSAGE);
 						}
 					}
 					case "listarComicsOK" -> {
 						ArrayList<Comic> comicList = comicDAO.listComics(clientSocket);
 						table.setModel(new ComicTableModel(comicList));				
 						ComicWindow.comicList = comicList;
+						ComicController comicController = new ComicController();
+						comicController.traducirTable(MainWindow.language, table);
 					}
 					case "eliminarComicOK" -> {
 						int result = comicDAO.deleteComic(clientSocket);
 						
 						if(result > 0) {
-							JOptionPane.showMessageDialog(null, "Se ha eliminado correctamente", "Eliminar cómic", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(null,  rb.getString("msgDelete"), "Eliminar cómic", JOptionPane.INFORMATION_MESSAGE);
 						} else {
-							JOptionPane.showMessageDialog(null, "No se ha podido eliminar", "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, rb.getString("msgDeleteFail"), "Error", JOptionPane.ERROR_MESSAGE);
 						}
 					}
 					case "buscarComicPorNombreOK" -> {
 						ArrayList<Comic> comicList = comicDAO.searchComicByName(clientSocket);
-						table.setModel(new ComicTableModel(comicList));				
+						table.setModel(new ComicTableModel(comicList));		
+						ComicController comicController = new ComicController();
+						comicController.traducirTable(MainWindow.language, table);
 					}
 					case "buscarComicsPorColeccionOK" -> {
 						ArrayList<Comic> comicList = comicDAO.searchComicByCollection(clientSocket);
 						table.setModel(new ComicTableModel(comicList));	
+						ComicController comicController = new ComicController();
+						comicController.traducirTable(MainWindow.language, table);
 					}
 					case "insertarComicOK" -> {
 						int result = comicDAO.insertComic(clientSocket);
 						
 						if(result > 0) {
-							JOptionPane.showMessageDialog(null, "Se ha insertado correctamente", "Insertar cómic", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(null, rb.getString("msgInsert"), rb.getString("btnInsert") + " cómic", JOptionPane.INFORMATION_MESSAGE);
 						} else {
-							JOptionPane.showMessageDialog(null, "No se ha podido insertar", "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, rb.getString("msgInsertFail"), "Error", JOptionPane.ERROR_MESSAGE);
 						}
 					}
 					case "editarComicOK" -> {
 						int result = comicDAO.editComic(clientSocket);
 						
 						if(result > 0) {
-							JOptionPane.showMessageDialog(null, "Se ha editado correctamente", "Insertar cómic", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(null, rb.getString("msgEdit"), "Editar cómic", JOptionPane.INFORMATION_MESSAGE);
 						} else {
-							JOptionPane.showMessageDialog(null, "No se ha podido editar", "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, rb.getString("msgEditFail"), "Error", JOptionPane.ERROR_MESSAGE);
 						}
 					}
 				}

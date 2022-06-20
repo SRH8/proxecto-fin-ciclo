@@ -43,13 +43,33 @@ public class ComicController {
 	/**
 	 * Muestra un informe de cómics
 	 * 
-	 * @param language
+	 * @param language idioma en el que se muestra el mensaje de error
 	 */
 	public void showComicReport(String language) {
 		ResourceBundle rb = ResourceBundle.getBundle(language);
 	
 		try (Connection connection = Pool.getConection()){
 			String reportPath = "./src/reports/Comic.jrxml";
+			
+			JasperReport report = JasperCompileManager.compileReport(reportPath);
+			JasperPrint visor = JasperFillManager.fillReport(report, null, connection);
+			JasperViewer.viewReport(visor, false);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, rb.getString("errorMsgCollectionReport"), "Error", JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Muestra un informe de cómics con datos adicionales
+	 * 
+	 * @param language idioma en el que se muestra el mensaje de error
+	 */
+	public void showComicReportComplete(String language) {
+		ResourceBundle rb = ResourceBundle.getBundle(language);
+		
+		try (Connection connection = Pool.getConection()){
+			String reportPath = "./src/reports/Comic2.jrxml";
 			
 			JasperReport report = JasperCompileManager.compileReport(reportPath);
 			JasperPrint visor = JasperFillManager.fillReport(report, null, connection);

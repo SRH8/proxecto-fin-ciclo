@@ -61,6 +61,26 @@ public class ComicCollectionController {
 	}
 	
 	/**
+	 * Muestra un informe de colecciones
+	 * 
+	 * @param language idioma del mensaje de error
+	 */
+	public void showCollectionReportOriginal(String language) {
+		ResourceBundle rb = ResourceBundle.getBundle(language);
+	
+		try (Connection connection = Pool.getConection()){
+			String reportPath = "./src/reports/Collection2.jrxml";
+			
+			JasperReport report = JasperCompileManager.compileReport(reportPath);
+			JasperPrint visor = JasperFillManager.fillReport(report, null, connection);
+			JasperViewer.viewReport(visor, false);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, rb.getString("errorMsgCollectionReport"), "Error", JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		}
+	}
+	
+	/**
 	 * Traduce una tabla
 	 * 
 	 * @param language idioma

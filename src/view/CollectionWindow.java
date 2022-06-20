@@ -52,6 +52,7 @@ public class CollectionWindow extends JDialog {
 	public static ArrayList<ComicCollection> collectionList = new ArrayList<>();
 	private JMenuItem mntmCollectionsReport;
 	public static JasperPrint visor = null;
+	private JMenuItem mntmColeccionesOriginal;
 	
 	/**
 	 * Lanza la pantalla
@@ -217,6 +218,16 @@ public class CollectionWindow extends JDialog {
 							collectionController.showCollectionReport(language);
 						}
 					});
+					{
+						mntmColeccionesOriginal = new JMenuItem("Colecciones dise\u00F1o");
+						mntmColeccionesOriginal.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								ComicCollectionController collectionController = new ComicCollectionController();
+								collectionController.showCollectionReportOriginal(language);
+							}
+						});
+						mnReports.add(mntmColeccionesOriginal);
+					}
 					mnReports.add(mntmCollectionsReport);
 				}
 			}
@@ -237,5 +248,6 @@ public class CollectionWindow extends JDialog {
 		btnClose.setText(rb.getString("btnClose"));	
 		btnListCollections.setText(rb.getString("btnListCollections"));
 		mntmCollectionsReport.setText(rb.getString("collectionTitle"));
+		mntmColeccionesOriginal.setText(rb.getString("mntmColeccionesOriginal"));
 	}
 }

@@ -218,6 +218,16 @@ public class ComicWindow extends JDialog {
 					});
 					mnReports.add(mntmComicReport);
 				}
+				{
+					JMenuItem mntmComicReport2 = new JMenuItem("C\u00F3mics completo");
+					mntmComicReport2.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							ComicController comicController = new ComicController();
+							comicController.showComicReportComplete(language);
+						}				
+					});
+					mnReports.add(mntmComicReport2);
+				}
 			}
 		}
 		traducir(language);

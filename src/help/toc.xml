@@ -9,6 +9,7 @@
 		<tocitem text="Pantalla de comics" target="verComics">
 			<tocitem text="Insertar comics" target="insertarComics"/>
 			<tocitem text="Editar comics" target="editarComics"/>
+			<tocitem text="Buscar comics" target="buscarComics"/>
 		</tocitem>
 	 <tocitem/>
 </toc>

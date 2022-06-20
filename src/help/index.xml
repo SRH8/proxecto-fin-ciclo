@@ -9,6 +9,7 @@
 		<indexitem text="Pantalla de comics" target="verComics"> 
 			<indexitem text="Insertar comics" target="insertarComics"/> 
 			<indexitem text="Editar comics" target="editarComics"/> 
+			<indexitem text="Buscar comics" target="buscarComics"/> 
 		</indexitem>
 	<indexitem/>
 </index>

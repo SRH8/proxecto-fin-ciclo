@@ -8,4 +8,5 @@
 	<mapID target="insertarComics" url="pages/InsertarComics.html"/>
 	<mapID target="editarColecciones" url="pages/EditarColecciones.html"/>
 	<mapID target="editarComics" url="pages/EditarComics.html"/>
+	<mapID target="buscarComics" url="pages/BuscarComics.html"/>
 </map>

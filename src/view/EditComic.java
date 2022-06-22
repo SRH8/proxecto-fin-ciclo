@@ -1,34 +1,24 @@
 package view;
 
-import java.awt.EventQueue;
-
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.FlowLayout;
 import java.awt.Image;
-
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-
-import controller.ComicCollectionController;
 import controller.ImagePicker;
 import controller.InsertComicCollectionController;
 import model.entities.Comic;
-import model.entities.ComicCollection;
-import model.entities.ComicStatus;
 import thread.ClientThread;
-
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.nio.file.Files;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
@@ -136,7 +126,7 @@ public class EditComic extends JDialog {
 					inserController.showWarningMessage(language);
 				} else {
 					try {
-						clientSocket = new Socket("localhost", 8080);
+						clientSocket = new Socket("192.168.56.101", 8080);
 					} catch (UnknownHostException e1) {
 						e1.printStackTrace();
 					} catch (IOException e1) {

@@ -8,14 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.JMenuBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.JTableHeader;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
-
 import controller.ComicController;
 import model.entities.Comic;
-import model.entities.ComicCollection;
-import model.entities.ComicStatus;
 import thread.ClientThread;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -83,7 +77,7 @@ public class ComicWindow extends JDialog {
 				btnListComics.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						try {
-							clientSocket = new Socket("localhost", 8080);
+							clientSocket = new Socket("192.168.56.101", 8080);
 						} catch (UnknownHostException e1) {
 							e1.printStackTrace();
 						} catch (IOException e1) {
@@ -166,7 +160,7 @@ public class ComicWindow extends JDialog {
 							
 							if(confirmation == 0) {
 								try {
-									clientSocket = new Socket("localhost", 8080);
+									clientSocket = new Socket("192.168.56.101", 8080);
 								} catch (UnknownHostException e1) {
 								 	e1.printStackTrace();
 								} catch (IOException e1) {

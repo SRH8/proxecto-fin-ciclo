@@ -193,7 +193,7 @@ ON comics.id_coleccion = colecciones.id]]>
 					<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 				</textField>
 				<image>
-					<reportElement x="529" y="-1" width="121" height="21" uuid="162df29b-9201-4bf3-963b-fbfa1c25182f"/>
+					<reportElement x="529" y="-1" width="121" height="61" uuid="949a23bb-e622-43ec-aefe-3fe031f9c5eb"/>
 					<imageExpression><![CDATA[$F{portada}]]></imageExpression>
 				</image>
 			</frame>

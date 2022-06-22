@@ -8,12 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.JMenuBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-
 import controller.ComicCollectionController;
 import model.entities.ComicCollection;
 import thread.ClientThread;
-import view.model.CollectionTableModel;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -25,15 +22,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
-
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JRResultSetDataSource;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.view.JasperViewer;
-
 
 /**
  * Pantalla para las operaciones con las colecciones de cómics
@@ -51,7 +39,6 @@ public class CollectionWindow extends JDialog {
 	private JButton btnListCollections;
 	public static ArrayList<ComicCollection> collectionList = new ArrayList<>();
 	private JMenuItem mntmCollectionsReport;
-	public static JasperPrint visor = null;
 	private JMenuItem mntmColeccionesOriginal;
 	
 	/**
@@ -84,7 +71,7 @@ public class CollectionWindow extends JDialog {
 				btnListCollections.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						try {
-							clientSocket = new Socket("localhost", 8080);
+							clientSocket = new Socket("192.168.56.101", 8080);
 						} catch (UnknownHostException e1) {
 							e1.printStackTrace();
 						} catch (IOException e1) {
@@ -168,7 +155,7 @@ public class CollectionWindow extends JDialog {
 								int row = collectionTable.getSelectedRow();
 								
 								try {
-									clientSocket = new Socket("localhost", 8080);
+									clientSocket = new Socket("192.168.56.101", 8080);
 								} catch (UnknownHostException e1) {
 								 	e1.printStackTrace();
 								} catch (IOException e1) {

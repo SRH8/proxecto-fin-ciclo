@@ -2,13 +2,11 @@ package controller;
 
 import java.sql.Connection;
 import java.util.ResourceBundle;
-
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
-
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -49,7 +47,7 @@ public class ComicCollectionController {
 		ResourceBundle rb = ResourceBundle.getBundle(language);
 	
 		try (Connection connection = Pool.getConection()){
-			String reportPath = "./src/reports/CollectionReport.jrxml";
+			String reportPath = "./reports/CollectionReport.jrxml";
 			
 			JasperReport report = JasperCompileManager.compileReport(reportPath);
 			JasperPrint visor = JasperFillManager.fillReport(report, null, connection);
@@ -69,7 +67,7 @@ public class ComicCollectionController {
 		ResourceBundle rb = ResourceBundle.getBundle(language);
 	
 		try (Connection connection = Pool.getConection()){
-			String reportPath = "./src/reports/Collection2.jrxml";
+			String reportPath = "./reports/Collection2.jrxml";
 			
 			JasperReport report = JasperCompileManager.compileReport(reportPath);
 			JasperPrint visor = JasperFillManager.fillReport(report, null, connection);

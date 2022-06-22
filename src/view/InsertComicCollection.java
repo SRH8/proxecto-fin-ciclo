@@ -1,28 +1,21 @@
 package view;
 
 import java.awt.EventQueue;
-
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-
 import java.awt.BorderLayout;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.FlowLayout;
 import java.awt.Image;
-
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-
 import controller.ImagePicker;
 import controller.InsertComicCollectionController;
 import model.entities.ComicCollection;
 import thread.ClientThread;
-
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
@@ -142,7 +135,7 @@ public class InsertComicCollection extends JDialog {
 				if(!txtName.getText().isBlank() && !txtReleaseDate.getText().isBlank() && !textArea.getText().isBlank()) {
 							
 					try {
-					clientSocket = new Socket("localhost", 8080);
+					clientSocket = new Socket("192.168.56.101", 8080);
 					} catch (UnknownHostException e1) {
 					e1.printStackTrace();
 					} catch (IOException e1) {

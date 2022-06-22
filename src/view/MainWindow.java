@@ -5,8 +5,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import controller.MainWindowController;
 import controller.Pool;
-import thread.ClientThread;
-
 import java.awt.BorderLayout;
 import javax.help.HelpBroker;
 import javax.help.HelpSet;
@@ -22,7 +20,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.net.MalformedURLException;
-import java.net.Socket;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -221,7 +218,7 @@ public class MainWindow {
 	private void showHelp(String language) {
 		ResourceBundle rb = ResourceBundle.getBundle(language);
 		try {
-			File fichero = new File("./src/help/help.hs");
+			File fichero = new File("./help/help.hs");
 			URL hsUrl = fichero.toURI().toURL();
 			HelpSet helpset = new HelpSet(null,hsUrl);
 			HelpBroker hb = helpset.createHelpBroker();

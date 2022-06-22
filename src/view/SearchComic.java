@@ -5,18 +5,11 @@ import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
-import javax.swing.JMenuBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-
-import controller.ComicController;
 import controller.SearchComicCollectionController;
 import model.entities.Comic;
-import model.entities.ComicCollection;
-import model.entities.ComicStatus;
 import thread.ClientThread;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -24,14 +17,10 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
-import java.awt.Color;
 
 /**
  * Pantalla para las operaciones con los cómics
@@ -77,7 +66,7 @@ public class SearchComic extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						if(!txtComicName.getText().isBlank() && txtCollectionName.getText().isBlank()) {
 							try {
-								clientSocket = new Socket("localhost", 8080);
+								clientSocket = new Socket("192.168.56.101", 8080);
 							} catch (UnknownHostException e1) {
 								e1.printStackTrace();
 							} catch (IOException e1) {
@@ -92,7 +81,7 @@ public class SearchComic extends JDialog {
 							
 						} else if (txtComicName.getText().isBlank() && !txtCollectionName.getText().isBlank()) {
 							try {
-								clientSocket = new Socket("localhost", 8080);
+								clientSocket = new Socket("192.168.56.101", 8080);
 							} catch (UnknownHostException e1) {
 								e1.printStackTrace();
 							} catch (IOException e1) {

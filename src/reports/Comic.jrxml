@@ -145,7 +145,7 @@
 				<textFieldExpression><![CDATA[$F{tapa}]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="450" y="4" width="105" height="126" uuid="b07c62e8-c38d-4d8c-86d9-2f3fe87939a2"/>
+				<reportElement x="450" y="4" width="111" height="121" uuid="7d89f544-766c-4bff-a5d6-5b368d48881d"/>
 				<imageExpression><![CDATA[$F{portada}]]></imageExpression>
 			</image>
 		</band>

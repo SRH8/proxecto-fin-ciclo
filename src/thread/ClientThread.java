@@ -2,24 +2,19 @@ package thread;
 
 import java.io.DataInputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ConnectException;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-
 import controller.ComicCollectionController;
 import controller.ComicController;
 import dao.impl.ComicCollectionDAO;
 import dao.impl.ComicDAO;
 import model.entities.Comic;
 import model.entities.ComicCollection;
-import model.entities.ComicStatus;
-import net.sf.jasperreports.engine.JRResultSetDataSource;
 import view.CollectionWindow;
 import view.ComicWindow;
 import view.MainWindow;

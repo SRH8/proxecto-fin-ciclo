@@ -146,7 +146,7 @@
 					<textFieldExpression><![CDATA[$F{anho_estreno}]]></textFieldExpression>
 				</textField>
 				<image>
-					<reportElement x="399" y="-1" width="171" height="29" uuid="62514ea6-12d1-49de-a270-47dbcbcf364a"/>
+					<reportElement x="409" y="-1" width="181" height="41" uuid="ad69b4f7-54f0-4518-bd91-4e03007e5212"/>
 					<imageExpression><![CDATA[$F{imagen}]]></imageExpression>
 				</image>
 			</frame>

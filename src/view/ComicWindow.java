@@ -37,6 +37,7 @@ public class ComicWindow extends JDialog {
 	private String language = MainWindow.language;
 	private JButton btnClose;
 	public static ArrayList<Comic> comicList = new ArrayList<>();
+	public static String collectionName = ""; 
 
 	/**
 	 * Lanza la pantalla
@@ -213,11 +214,11 @@ public class ComicWindow extends JDialog {
 					mnReports.add(mntmComicReport);
 				}
 				{
-					JMenuItem mntmComicReport2 = new JMenuItem("C\u00F3mics completo");
+					JMenuItem mntmComicReport2 = new JMenuItem("C\u00F3mics por colecci\u00F3n");
 					mntmComicReport2.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							ComicController comicController = new ComicController();
-							comicController.showComicReportComplete(language);
+							ComicReportDialog comicReportDialog = new ComicReportDialog();
+							comicReportDialog.setVisible(true);
 						}				
 					});
 					mnReports.add(mntmComicReport2);

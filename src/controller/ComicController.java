@@ -1,6 +1,8 @@
 package controller;
 
 import java.sql.Connection;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -47,7 +49,7 @@ public class ComicController {
 		ResourceBundle rb = ResourceBundle.getBundle(language);
 	
 		try (Connection connection = Pool.getConection()){
-			String reportPath = "./reports/Comic.jrxml";
+			String reportPath = "./reports/ComicReport.jrxml";
 			
 			JasperReport report = JasperCompileManager.compileReport(reportPath);
 			JasperPrint visor = JasperFillManager.fillReport(report, null, connection);
@@ -59,18 +61,19 @@ public class ComicController {
 	}
 	
 	/**
-	 * Muestra un informe de cómics con datos adicionales
+	 * Muestra un informe de cómics por colección
 	 * 
 	 * @param language idioma en el que se muestra el mensaje de error
 	 */
-	public void showComicReportComplete(String language) {
+	public void showComicReportByCollection(String language, String collectionName) {
 		ResourceBundle rb = ResourceBundle.getBundle(language);
 		
 		try (Connection connection = Pool.getConection()){
-			String reportPath = "./reports/Comic2.jrxml";
-			
+			String reportPath = "./reports/ComicsByCollection.jrxml";
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("CollectionName", collectionName);
 			JasperReport report = JasperCompileManager.compileReport(reportPath);
-			JasperPrint visor = JasperFillManager.fillReport(report, null, connection);
+			JasperPrint visor = JasperFillManager.fillReport(report, map, connection);
 			JasperViewer.viewReport(visor, false);
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, rb.getString("errorMsgCollectionReport"), "Error", JOptionPane.ERROR_MESSAGE);
